@@ -1,0 +1,30 @@
+# eclipse
+bin
+**/*.launch
+**/.settings
+**/.metadata
+**/.classpath
+**/.project
+
+# idea
+out
+**/*.ipr
+**/*.iws
+**/*.iml
+**/.idea
+
+# gradle
+**/build
+**/.gradle
+
+#mcreator
+**/.mcreator
+
+# other
+**/eclipse
+**/run
+
+# Files from Forge MDK
+**/forge*changelog.txt
+
+Forge-1.19.2/gradle.properties
