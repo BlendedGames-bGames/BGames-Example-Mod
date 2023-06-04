@@ -2,6 +2,7 @@ package net.gsimken.bgamesmod.networking.packet;
 
 import net.gsimken.bgameslibrary.bgames.BGamesLibraryTools;
 import net.gsimken.bgamesmod.client.triggers.ChooseCategoriesTrigger;
+import net.gsimken.bgamesmod.client.triggers.PhysicalCategoryTrigger;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.chat.Component;
@@ -11,17 +12,25 @@ import net.minecraftforge.network.NetworkHooks;
 
 import java.util.function.Supplier;
 
-public class ButtonOpenCategoriesC2SPacket {
+public class ButtonOpenScreenC2SPacket {
+    /*
+    * Screens id:
+    * Choose Category: 0
+    * Physical Category:1
+    * */
+    private final int screenId;
 
-    public ButtonOpenCategoriesC2SPacket() {
 
+    public ButtonOpenScreenC2SPacket(int screenId) {
+        this.screenId = screenId;
     }
 
-    public ButtonOpenCategoriesC2SPacket(FriendlyByteBuf buf) {
-
+    public ButtonOpenScreenC2SPacket(FriendlyByteBuf buf) {
+        this.screenId = buf.readInt();
     }
 
     public void toBytes(FriendlyByteBuf buf) {
+        buf.writeInt(this.screenId);
 
     }
 
@@ -31,7 +40,15 @@ public class ButtonOpenCategoriesC2SPacket {
             // HERE WE ARE ON THE SERVER!
             ServerPlayer player = context.getSender();
             if(BGamesLibraryTools.isPlayerLogged(player)){
-                NetworkHooks.openScreen(player,new ChooseCategoriesTrigger());
+                switch (this.screenId){
+                    case 0:
+                        NetworkHooks.openScreen(player,new ChooseCategoriesTrigger());
+                        break;
+                    case 1:
+                        NetworkHooks.openScreen(player,new PhysicalCategoryTrigger());
+                        break;
+                }
+
             }
             else{
                 player.sendSystemMessage(Component.translatable(  "login.bgameslibrary.not_logged").withStyle(ChatFormatting.RED));

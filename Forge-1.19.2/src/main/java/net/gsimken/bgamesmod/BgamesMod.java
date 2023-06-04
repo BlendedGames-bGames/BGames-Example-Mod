@@ -3,6 +3,7 @@ package net.gsimken.bgamesmod;
 import com.mojang.logging.LogUtils;
 import net.gsimken.bgamesmod.client.ModMenus;
 import net.gsimken.bgamesmod.client.gui.ChooseCategoriesScreen;
+import net.gsimken.bgamesmod.client.gui.PhysicalCategoryEffectsScreen;
 import net.gsimken.bgamesmod.effects.ModEffects;
 import net.gsimken.bgamesmod.networking.ModMessages;
 import net.minecraft.client.gui.screens.MenuScreens;
@@ -53,6 +54,7 @@ public class BgamesMod
         public static void onClientSetup(FMLClientSetupEvent event)
         {
             MenuScreens.register(ModMenus.CHOOSE_CATEGORY.get(), ChooseCategoriesScreen::new);
+            MenuScreens.register(ModMenus.PHYSICAL_CATEGORY.get(), PhysicalCategoryEffectsScreen::new);
         }
     }
 }

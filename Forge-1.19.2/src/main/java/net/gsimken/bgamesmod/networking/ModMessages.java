@@ -2,7 +2,8 @@ package net.gsimken.bgamesmod.networking;
 
 import net.gsimken.bgamesmod.BgamesMod;
 
-import net.gsimken.bgamesmod.networking.packet.ButtonOpenCategoriesC2SPacket;
+import net.gsimken.bgamesmod.networking.packet.ButtonOpenScreenC2SPacket;
+import net.gsimken.bgamesmod.networking.packet.ButtonsBGamesInteractPacket;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraftforge.network.NetworkDirection;
@@ -28,12 +29,16 @@ public class ModMessages {
 
         INSTANCE = net;
 
-        net.messageBuilder(ButtonOpenCategoriesC2SPacket.class, id(), NetworkDirection.PLAY_TO_SERVER)
-                .decoder(ButtonOpenCategoriesC2SPacket::new)
-                .encoder(ButtonOpenCategoriesC2SPacket::toBytes)
-                .consumerMainThread(ButtonOpenCategoriesC2SPacket::handle)
+        net.messageBuilder(ButtonOpenScreenC2SPacket.class, id(), NetworkDirection.PLAY_TO_SERVER)
+                .decoder(ButtonOpenScreenC2SPacket::new)
+                .encoder(ButtonOpenScreenC2SPacket::toBytes)
+                .consumerMainThread(ButtonOpenScreenC2SPacket::handle)
                 .add();
-
+        net.messageBuilder(ButtonsBGamesInteractPacket.class, id(), NetworkDirection.PLAY_TO_SERVER)
+                .decoder(ButtonsBGamesInteractPacket::new)
+                .encoder(ButtonsBGamesInteractPacket::toBytes)
+                .consumerMainThread(ButtonsBGamesInteractPacket::handle)
+                .add();
     }
 
     public static <MSG> void sendToServer(MSG message) {

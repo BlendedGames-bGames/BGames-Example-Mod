@@ -3,6 +3,8 @@ package net.gsimken.bgamesmod.client.gui;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.gsimken.bgamesmod.client.menus.ChooseCategoriesMenu;
+import net.gsimken.bgamesmod.networking.ModMessages;
+import net.gsimken.bgamesmod.networking.packet.ButtonOpenScreenC2SPacket;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.components.ImageButton;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
@@ -15,13 +17,13 @@ import java.util.HashMap;
 
 public class ChooseCategoriesScreen extends AbstractContainerScreen<ChooseCategoriesMenu> {
 	private final static HashMap<String, Object> guistate = ChooseCategoriesMenu.guistate;
-	private final Player entity;
+	private final Player player;
 	ImageButton socialButton;
 	ImageButton physicalButton;
 	ImageButton affectiveButton;
 	ImageButton cognitiveButton;
 	ImageButton linguisticButton;
-	private static final ResourceLocation BACKGROUND_TEXTURE = new ResourceLocation("bgamesmod:textures/screens/choose_category_background.png");
+	private static final ResourceLocation BACKGROUND_TEXTURE = new ResourceLocation("bgamesmod:textures/screens/backgrounds/generic_background.png");
 	private static final ResourceLocation SOCIAL_BUTTON_TEXTURE = new ResourceLocation("bgamesmod:textures/screens/social_button_20x18.png");
 	private static final ResourceLocation COGNITIVE_BUTTON_TEXTURE = new ResourceLocation("bgamesmod:textures/screens/cognitive_button_20x18.png");
 	private static final ResourceLocation LINGUISTIC_BUTTON_TEXTURE = new ResourceLocation("bgamesmod:textures/screens/linguistic_button_20x18.png");
@@ -30,7 +32,7 @@ public class ChooseCategoriesScreen extends AbstractContainerScreen<ChooseCatego
 
 	public ChooseCategoriesScreen(ChooseCategoriesMenu container, Inventory inventory, Component text) {
 		super(container, inventory, text);
-		this.entity = container.player;
+		this.player = container.player;
 		this.imageWidth = 260;
 		this.imageHeight = 135;
 	}
@@ -87,31 +89,41 @@ public class ChooseCategoriesScreen extends AbstractContainerScreen<ChooseCatego
 	public void init() {
 		super.init();
 		this.minecraft.keyboardHandler.setSendRepeatsToGui(true);
-		socialButton = new ImageButton(this.leftPos + 34, this.topPos + 35, 20, 18, 0, 0, 19, SOCIAL_BUTTON_TEXTURE,20,36,
+		int x = this.leftPos+34;
+		int y = this.topPos+ 35;
+		socialButton = new ImageButton(this.leftPos + 34, this.topPos + 35, 20, 18, 0, 0, 19, SOCIAL_BUTTON_TEXTURE,20,37,
 				e -> {
 
-		});
+				}
+		);
+		physicalButton = new ImageButton(this.leftPos + 114, this.topPos + 35, 20, 18, 0, 0, 19,PHYSICAL_BUTTON_TEXTURE,20,37,
+				e -> {
+					player.closeContainer();
+					ModMessages.sendToServer(new ButtonOpenScreenC2SPacket(1));
+
+				}
+		);
+		affectiveButton = new ImageButton(this.leftPos + 194, this.topPos + 35, 20, 18, 0, 0, 19,AFFECTIVE_BUTTON_TEXTURE,20,37,
+				e -> {
+				}
+		);
+		cognitiveButton = new ImageButton(this.leftPos + 74, this.topPos + 83, 20, 18, 0, 0, 19, COGNITIVE_BUTTON_TEXTURE,20,37,
+				e -> {
+				}
+		);
+		linguisticButton = new ImageButton(this.leftPos + 154, this.topPos + 83, 20, 18, 0, 0, 19, LINGUISTIC_BUTTON_TEXTURE,20,37,
+				e -> {
+				}
+		);
 		guistate.put("button:social_button", socialButton);
-		this.addRenderableWidget(socialButton);
-		physicalButton = new ImageButton(this.leftPos + 114, this.topPos + 35, 20, 18, 0, 0, 19,PHYSICAL_BUTTON_TEXTURE,20,36,
-				e -> {
-		});
 		guistate.put("button:physical_button", physicalButton);
-		this.addRenderableWidget(physicalButton);
-		affectiveButton = new ImageButton(this.leftPos + 194, this.topPos + 35, 20, 18, 0, 0, 19,AFFECTIVE_BUTTON_TEXTURE,20,36,
-				e -> {
-		});
 		guistate.put("button:affective_button", affectiveButton);
-		this.addRenderableWidget(affectiveButton);
-		cognitiveButton = new ImageButton(this.leftPos + 74, this.topPos + 83, 20, 18, 0, 0, 19, COGNITIVE_BUTTON_TEXTURE,20,36,
-				e -> {
-		});
 		guistate.put("button:cognitive_button", cognitiveButton);
-		this.addRenderableWidget(cognitiveButton);
-		linguisticButton = new ImageButton(this.leftPos + 154, this.topPos + 83, 20, 18, 0, 0, 19, LINGUISTIC_BUTTON_TEXTURE,20,36,
-				e -> {
-		});
 		guistate.put("button:linguistic_button", linguisticButton);
+		this.addRenderableWidget(socialButton);
+		this.addRenderableWidget(physicalButton);
+		this.addRenderableWidget(affectiveButton);
+		this.addRenderableWidget(cognitiveButton);
 		this.addRenderableWidget(linguisticButton);
 	}
 }

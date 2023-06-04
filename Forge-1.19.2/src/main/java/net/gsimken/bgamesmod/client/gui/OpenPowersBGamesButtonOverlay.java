@@ -2,11 +2,10 @@
 package net.gsimken.bgamesmod.client.gui;
 
 import net.gsimken.bgamesmod.networking.ModMessages;
-import net.gsimken.bgamesmod.networking.packet.ButtonOpenCategoriesC2SPacket;
+import net.gsimken.bgamesmod.networking.packet.ButtonOpenScreenC2SPacket;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.components.ImageButton;
 import net.minecraft.client.gui.screens.inventory.InventoryScreen;
-import net.minecraft.client.gui.screens.recipebook.RecipeBookComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.api.distmarker.Dist;
@@ -22,7 +21,6 @@ public class OpenPowersBGamesButtonOverlay {
 	@SubscribeEvent(priority = EventPriority.NORMAL)
 	public static void inventoryEventHandler(ScreenEvent.Init.Post event) {
 		if (event.getScreen() instanceof InventoryScreen) {
-
 			InventoryScreen inv = (InventoryScreen) event.getScreen();
 			int w = inv.width;
 			int h = inv.height;
@@ -35,14 +33,13 @@ public class OpenPowersBGamesButtonOverlay {
 			int buttonPosX=  posX + 44; //recipeBook.updateScreenPosition(posX + 64,20);
 			int buttonPosY =posY + -101;
 			if (entity != null) {
-				ImageButton bGamesLogo= new ImageButton(buttonPosX,buttonPosY , 20, 18, 0, 0, 18,  BGAMES_BUTTON_LOCATION,20,36,
+				ImageButton bGamesLogo= new ImageButton(buttonPosX,buttonPosY , 20, 18, 0, 0, 19,  BGAMES_BUTTON_LOCATION,20,37,
 						e -> {
-							ModMessages.sendToServer(new ButtonOpenCategoriesC2SPacket());
+							ModMessages.sendToServer(new ButtonOpenScreenC2SPacket(0));
 						});
 				event.addListener(bGamesLogo);
+
 			}
-
-
 
 		}
 	}
