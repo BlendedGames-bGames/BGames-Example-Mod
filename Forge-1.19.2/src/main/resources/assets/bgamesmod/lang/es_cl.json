@@ -1,4 +1,12 @@
 {
-  "login.bgameslibrary.not_logged": "No has iniciado sesión, por favor usa /login antes de jugar"
+  "login.bgameslibrary.not_logged": "No has iniciado sesión, por favor usa /login antes de jugar",
 
+  "gui.bgamesmod.choose_category.label_social": "Social",
+  "gui.bgamesmod.choose_category.label_physical": "Fisico",
+  "gui.bgamesmod.choose_category.label_consume_points": "Consumir puntos",
+  "gui.bgamesmod.choose_category.label_affective": "Afectivo",
+  "gui.bgamesmod.choose_category.label_cognitive": "Cognitivo",
+  "gui.bgamesmod.choose_category.label_linguistic": "Linguistico",
+
+  "effect.bgamesmod.reach_boost": "Ultralcance"
 }

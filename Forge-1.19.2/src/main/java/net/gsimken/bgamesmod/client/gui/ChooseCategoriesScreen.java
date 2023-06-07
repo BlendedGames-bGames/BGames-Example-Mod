@@ -3,6 +3,7 @@ package net.gsimken.bgamesmod.client.gui;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.gsimken.bgamesmod.client.menus.ChooseCategoriesMenu;
+import net.gsimken.bgamesmod.client.utils.ScreenUtils;
 import net.gsimken.bgamesmod.networking.ModMessages;
 import net.gsimken.bgamesmod.networking.packet.ButtonOpenScreenC2SPacket;
 import net.minecraft.client.Minecraft;
@@ -29,12 +30,13 @@ public class ChooseCategoriesScreen extends AbstractContainerScreen<ChooseCatego
 	private static final ResourceLocation LINGUISTIC_BUTTON_TEXTURE = new ResourceLocation("bgamesmod:textures/screens/linguistic_button_20x18.png");
 	private static final ResourceLocation PHYSICAL_BUTTON_TEXTURE = new ResourceLocation("bgamesmod:textures/screens/physical_button_20x18.png");
 	private static final ResourceLocation AFFECTIVE_BUTTON_TEXTURE = new ResourceLocation("bgamesmod:textures/screens/affective_button_20x18.png");
-
+	private int BUTTON_WIDTH = 20;
+	private int BUTTON_HEIGHT  = 18;
 	public ChooseCategoriesScreen(ChooseCategoriesMenu container, Inventory inventory, Component text) {
 		super(container, inventory, text);
 		this.player = container.player;
-		this.imageWidth = 260;
-		this.imageHeight = 135;
+		this.imageWidth = 200;
+		this.imageHeight = 120;
 	}
 
 
@@ -71,12 +73,20 @@ public class ChooseCategoriesScreen extends AbstractContainerScreen<ChooseCatego
 
 	@Override
 	protected void renderLabels(PoseStack poseStack, int mouseX, int mouseY) {
-		this.font.draw(poseStack, Component.translatable("gui.bgamesmod.choose_category.label_social"), 34, 67, -12829636);
-		this.font.draw(poseStack, Component.translatable("gui.bgamesmod.choose_category.label_physical"), 110, 68, -12829636);
-		this.font.draw(poseStack, Component.translatable("gui.bgamesmod.choose_category.label_consume_points"), 90, 11, -12829636);
-		this.font.draw(poseStack, Component.translatable("gui.bgamesmod.choose_category.label_affective"), 189, 67, -12829636);
-		this.font.draw(poseStack, Component.translatable("gui.bgamesmod.choose_category.label_cognitive"), 66, 115, -12829636);
-		this.font.draw(poseStack, Component.translatable("gui.bgamesmod.choose_category.label_linguistic"), 145, 115, -12829636);
+		int xCenter  = this.imageWidth/2;
+		int y = BUTTON_HEIGHT*3+1;
+		Component socialLabel =  Component.translatable("gui.bgamesmod.choose_category.label_social");
+		this.font.draw(poseStack,socialLabel,xCenter-3*BUTTON_WIDTH-this.font.width(socialLabel)/2 , y, -12829636);
+		Component physicalLabel =  Component.translatable("gui.bgamesmod.choose_category.label_physical");
+		this.font.draw(poseStack,physicalLabel, xCenter-this.font.width(physicalLabel)/2, y, -12829636);
+		Component consumePointsLabel =  Component.translatable("gui.bgamesmod.choose_category.label_consume_points");
+		this.font.draw(poseStack,consumePointsLabel ,xCenter-this.font.width(consumePointsLabel)/2 , 10, -12829636);
+		Component affectiveLabel =  Component.translatable("gui.bgamesmod.choose_category.label_affective");
+		this.font.draw(poseStack,affectiveLabel , xCenter+3*BUTTON_WIDTH-this.font.width(affectiveLabel)/2, y, -12829636);
+		Component cognitiveLabel =  Component.translatable("gui.bgamesmod.choose_category.label_cognitive");
+		this.font.draw(poseStack, cognitiveLabel, xCenter-3*BUTTON_WIDTH/2-this.font.width(cognitiveLabel)/2, y+2*BUTTON_HEIGHT, -12829636);
+		Component linguisticLabel =  Component.translatable("gui.bgamesmod.choose_category.label_linguistic");
+		this.font.draw(poseStack, linguisticLabel, xCenter+3*BUTTON_WIDTH/2-this.font.width(cognitiveLabel)/2, y+2*BUTTON_HEIGHT, -12829636);
 	}
 
 	@Override
@@ -89,29 +99,30 @@ public class ChooseCategoriesScreen extends AbstractContainerScreen<ChooseCatego
 	public void init() {
 		super.init();
 		this.minecraft.keyboardHandler.setSendRepeatsToGui(true);
-		int x = this.leftPos+34;
-		int y = this.topPos+ 35;
-		socialButton = new ImageButton(this.leftPos + 34, this.topPos + 35, 20, 18, 0, 0, 19, SOCIAL_BUTTON_TEXTURE,20,37,
-				e -> {
 
-				}
-		);
-		physicalButton = new ImageButton(this.leftPos + 114, this.topPos + 35, 20, 18, 0, 0, 19,PHYSICAL_BUTTON_TEXTURE,20,37,
+		int xCenter  = this.leftPos+this.imageWidth/2;
+		int y = this.topPos + BUTTON_HEIGHT*2;
+		physicalButton = new ImageButton(xCenter-BUTTON_WIDTH/2, y, 20, 18, 0, 0, 19,PHYSICAL_BUTTON_TEXTURE,20,37,
 				e -> {
 					player.closeContainer();
 					ModMessages.sendToServer(new ButtonOpenScreenC2SPacket(1));
 
 				}
 		);
-		affectiveButton = new ImageButton(this.leftPos + 194, this.topPos + 35, 20, 18, 0, 0, 19,AFFECTIVE_BUTTON_TEXTURE,20,37,
+		socialButton = new ImageButton(xCenter-3*BUTTON_WIDTH-BUTTON_WIDTH/2, y, 20, 18, 0, 0, 19, SOCIAL_BUTTON_TEXTURE,20,37,
+				e -> {
+
+				}
+		);
+		affectiveButton = new ImageButton(xCenter+3*BUTTON_WIDTH-BUTTON_WIDTH/2, y, 20, 18, 0, 0, 19,AFFECTIVE_BUTTON_TEXTURE,20,37,
 				e -> {
 				}
 		);
-		cognitiveButton = new ImageButton(this.leftPos + 74, this.topPos + 83, 20, 18, 0, 0, 19, COGNITIVE_BUTTON_TEXTURE,20,37,
+		cognitiveButton = new ImageButton(xCenter-2*BUTTON_WIDTH, y+2*BUTTON_HEIGHT, 20, 18, 0, 0, 19, COGNITIVE_BUTTON_TEXTURE,20,37,
 				e -> {
 				}
 		);
-		linguisticButton = new ImageButton(this.leftPos + 154, this.topPos + 83, 20, 18, 0, 0, 19, LINGUISTIC_BUTTON_TEXTURE,20,37,
+		linguisticButton = new ImageButton(xCenter+BUTTON_HEIGHT, y+2*BUTTON_HEIGHT, 20, 18, 0, 0, 19, LINGUISTIC_BUTTON_TEXTURE,20,37,
 				e -> {
 				}
 		);

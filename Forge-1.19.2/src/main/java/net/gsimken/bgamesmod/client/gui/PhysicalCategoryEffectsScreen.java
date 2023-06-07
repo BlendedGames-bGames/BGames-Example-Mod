@@ -6,6 +6,7 @@ import net.gsimken.bgameslibrary.bgames.BGamesPlayerData;
 import net.gsimken.bgameslibrary.bgames.ClientBGamesPlayerData;
 import net.gsimken.bgamesmod.client.menus.ChooseCategoriesMenu;
 import net.gsimken.bgamesmod.client.utils.BGamesButton;
+import net.gsimken.bgamesmod.client.utils.ScreenUtils;
 import net.gsimken.bgamesmod.networking.ModMessages;
 import net.gsimken.bgamesmod.networking.packet.ButtonOpenScreenC2SPacket;
 import net.gsimken.bgamesmod.networking.packet.ButtonsBGamesInteractPacket;
@@ -104,7 +105,7 @@ public class PhysicalCategoryEffectsScreen extends AbstractContainerScreen<Choos
 	protected void renderLabels(PoseStack poseStack, int mouseX, int mouseY) {
 		Component consumePoints= Component.translatable("gui.bgamesmod.choose_category.label_consume_points");
 		Component physicalLabel=Component.translatable("gui.bgamesmod.choose_category.label_physical");
-		Component points  = getPoints(ClientBGamesPlayerData.getPlayerPhysicalPoints());
+		Component points  = ScreenUtils.getPoints(ClientBGamesPlayerData.getPlayerPhysicalPoints());
 
 
 		this.font.draw(poseStack,physicalLabel , (this.imageWidth/2)-(this.font.width(physicalLabel)/2), 5, -12829636);
@@ -112,19 +113,19 @@ public class PhysicalCategoryEffectsScreen extends AbstractContainerScreen<Choos
 		this.font.draw(poseStack, points, this.imageWidth-this.font.width(points)-5, 5, -12829636);
 		int x = (this.imageWidth/11);
 		int y = (BUTTONS_HEIGHT*5/2) + 1;
-		Component effectValue = getPoints(-1);
+		Component effectValue = ScreenUtils.getPoints(-1);
 		Component[] effectNamesFirstRow= {MobEffects.DIG_SPEED.getDisplayName(),MobEffects.JUMP.getDisplayName(),MobEffects.MOVEMENT_SPEED.getDisplayName(),MobEffects.DAMAGE_BOOST.getDisplayName(),MobEffects.REGENERATION.getDisplayName()};
 		for(int i=0; i<5;i++){
-			this.font.draw(poseStack,effectNamesFirstRow[i],calculateCenteredX(x, BUTTONS_WIDTH, effectNamesFirstRow[i]) , y, -12829636);
-			this.font.draw(poseStack,effectValue,calculateCenteredX(x, BUTTONS_WIDTH, effectValue) , y+10, -12829636);
+			this.font.draw(poseStack,effectNamesFirstRow[i], ScreenUtils.calculateCenteredX(x, BUTTONS_WIDTH, effectNamesFirstRow[i]) , y, -12829636);
+			this.font.draw(poseStack,effectValue,ScreenUtils.calculateCenteredX(x, BUTTONS_WIDTH, effectValue) , y+10, -12829636);
 			x= horizontalSpacing(x);
 		}
 		x = (this.imageWidth/11);
 		y+= BUTTONS_HEIGHT*5/2;
 		Component[] effectNamesSecondRow= {MobEffects.ABSORPTION.getDisplayName(),MobEffects.FIRE_RESISTANCE.getDisplayName(),MobEffects.HEALTH_BOOST.getDisplayName(),MobEffects.NIGHT_VISION.getDisplayName(),MobEffects.DAMAGE_RESISTANCE.getDisplayName()};
 		for(int i=0; i<5;i++){
-			this.font.draw(poseStack,effectNamesSecondRow[i],calculateCenteredX(x, BUTTONS_WIDTH, effectNamesSecondRow[i]) , y, -12829636);
-			this.font.draw(poseStack,effectValue,calculateCenteredX(x, BUTTONS_WIDTH, effectValue) , y+10, -12829636);
+			this.font.draw(poseStack,effectNamesSecondRow[i],ScreenUtils.calculateCenteredX(x, BUTTONS_WIDTH, effectNamesSecondRow[i]) , y, -12829636);
+			this.font.draw(poseStack,effectValue,ScreenUtils.calculateCenteredX(x, BUTTONS_WIDTH, effectValue) , y+10, -12829636);
 			x= horizontalSpacing(x);
 		}
 
@@ -478,11 +479,6 @@ public class PhysicalCategoryEffectsScreen extends AbstractContainerScreen<Choos
 		return x+(this.imageWidth/11)*2;
 	}
 
-	private Component getPoints(int points){
-		return Component.translatable("gui.bgameslibrary.display_attributes.points", Component.literal( String.valueOf(points)));
-	}
-	private int calculateCenteredX(int xPosPivot,int totalWidth , Component text){
-		return xPosPivot+(totalWidth/2) - (this.font.width(text)/2);
-	}
+
 
 }

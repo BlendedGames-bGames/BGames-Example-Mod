@@ -1,5 +1,4 @@
 {
-
   "login.bgameslibrary.not_logged": "Not logged in bGames, please use /login command before play",
 
   "gui.bgamesmod.choose_category.label_social": "Social",
@@ -7,5 +6,7 @@
   "gui.bgamesmod.choose_category.label_consume_points": "Consume points",
   "gui.bgamesmod.choose_category.label_affective": "Affective",
   "gui.bgamesmod.choose_category.label_cognitive": "Cognitive",
-  "gui.bgamesmod.choose_category.label_linguistic": "Linguistic"
+  "gui.bgamesmod.choose_category.label_linguistic": "Linguistic",
+
+  "effect.bgamesmod.reach_boost": "Reach Boost"
 }
