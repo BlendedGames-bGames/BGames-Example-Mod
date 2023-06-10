@@ -2,6 +2,7 @@ package net.gsimken.bgamesmod.networking.packet;
 
 import net.gsimken.bgameslibrary.bgames.BGamesLibraryTools;
 import net.gsimken.bgamesmod.client.triggers.ChooseCategoriesTrigger;
+import net.gsimken.bgamesmod.client.triggers.CognitiveCategoryTrigger;
 import net.gsimken.bgamesmod.client.triggers.PhysicalCategoryTrigger;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.FriendlyByteBuf;
@@ -46,6 +47,9 @@ public class ButtonOpenScreenC2SPacket {
                         break;
                     case 1:
                         NetworkHooks.openScreen(player,new PhysicalCategoryTrigger());
+                        break;
+                    case 2:
+                        NetworkHooks.openScreen(player,new CognitiveCategoryTrigger());
                         break;
                 }
 

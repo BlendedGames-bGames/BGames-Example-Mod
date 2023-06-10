@@ -5,6 +5,7 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import net.gsimken.bgameslibrary.bgames.BGamesPlayerData;
 import net.gsimken.bgameslibrary.bgames.ClientBGamesPlayerData;
 import net.gsimken.bgamesmod.client.menus.ChooseCategoriesMenu;
+import net.gsimken.bgamesmod.client.menus.PhysicalCategoryMenu;
 import net.gsimken.bgamesmod.client.utils.BGamesButton;
 import net.gsimken.bgamesmod.client.utils.ScreenUtils;
 import net.gsimken.bgamesmod.networking.ModMessages;
@@ -25,7 +26,7 @@ import net.minecraft.world.entity.player.Player;
 import java.util.HashMap;
 import java.util.function.Consumer;
 
-public class PhysicalCategoryEffectsScreen extends AbstractContainerScreen<ChooseCategoriesMenu> {
+public class PhysicalCategoryEffectsScreen extends AbstractContainerScreen<PhysicalCategoryMenu> {
 	private final static HashMap<String, Object> guistate = ChooseCategoriesMenu.guistate;
 	private final Player player;
 	BGamesButton hasteButton;
@@ -59,7 +60,7 @@ public class PhysicalCategoryEffectsScreen extends AbstractContainerScreen<Choos
 
 
 
-	public PhysicalCategoryEffectsScreen(ChooseCategoriesMenu container, Inventory inventory, Component text) {
+	public PhysicalCategoryEffectsScreen(PhysicalCategoryMenu container, Inventory inventory, Component text) {
 		super(container, inventory, text);
 		this.player = container.player;
 		this.imageWidth = 470;

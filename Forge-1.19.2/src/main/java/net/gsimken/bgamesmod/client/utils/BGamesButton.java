@@ -17,6 +17,7 @@ public class BGamesButton extends Button {
     private final int textureWidth;
     private final int textureHeight;
     private boolean enabled;
+    private int cooldown; // ticks
     public BGamesButton(int x, int y, int width, int height, int u, int v, ResourceLocation texture, Button.OnPress pressAction) {
         this(x, y, width, height, u, v, height, texture, 256, 256, pressAction);
     }
@@ -44,26 +45,52 @@ public class BGamesButton extends Button {
         this.hoveredVOffset = hoveredVOffset;
         this.texture = texture;
         this.enabled = true;
+        this.cooldown = 0;
     }
     public void setOff(){
         this.enabled=false;
     }
     public void setOn(){
-        this.enabled=true;
+        if(this.cooldown==0) {
+            this.enabled = true;
+        }
     }
     public boolean isEnabled(){
         return this.enabled;
+    }
+
+    public int getCooldown() {
+        return cooldown;
+    }
+    public boolean isReady(){
+        if(this.cooldown==0){
+            return true;
+        }
+        return false;
+    }
+    public void decreaseCooldown(){
+        this.cooldown--;
+        if(this.cooldown<=0){
+            this.setOn();
+            this.cooldown = Math.max(this.cooldown, 0);
+        }
+
+    }
+    public void setCooldown(){
+        this.setOff();
+        this.cooldown = 20; //1sec
+
+    }
+    public void setCooldown(int ticks){
+        this.setOff();
+        this.cooldown = ticks; //1sec
+
     }
     @Override
     public void onPress() {
         if(this.enabled) {
             this.playDownSound(Minecraft.getInstance().getSoundManager());
             this.onPress.onPress(this);
-        }
-        else{
-            this.x += 5;
-            this.x -= 10;
-            this.x += 5;
         }
     }
     @Override

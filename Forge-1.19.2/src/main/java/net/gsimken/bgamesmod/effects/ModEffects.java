@@ -13,10 +13,13 @@ import net.minecraftforge.registries.RegistryObject;
 public class ModEffects {
     public static final DeferredRegister<MobEffect> MOB_EFFECTS = DeferredRegister.create(ForgeRegistries.MOB_EFFECTS, BgamesMod.MOD_ID);
     public static final RegistryObject<MobEffect> REACH_BOOST = MOB_EFFECTS.register("reach_boost",
-            ()-> new ReachBoostEffect(MobEffectCategory.BENEFICIAL,4653215).
+            ()-> new ReachBoostEffect(MobEffectCategory.BENEFICIAL,3129339).
                     addAttributeModifier(ForgeMod.REACH_DISTANCE.get(),
                             "839A1A0E-FD2A-4880-96CB-94D18466DE60",
                             2.0, AttributeModifier.Operation.ADDITION)
+    );
+    public static final RegistryObject<MobEffect> PICKUP_BOOST = MOB_EFFECTS.register("pickup_boost",
+            ()->new PickUpRangeBoost(MobEffectCategory.BENEFICIAL,4653215)
     );
 
 

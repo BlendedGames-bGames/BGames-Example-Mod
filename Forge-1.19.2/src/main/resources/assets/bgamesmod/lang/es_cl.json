@@ -8,5 +8,6 @@
   "gui.bgamesmod.choose_category.label_cognitive": "Cognitivo",
   "gui.bgamesmod.choose_category.label_linguistic": "Linguistico",
 
-  "effect.bgamesmod.reach_boost": "Ultralcance"
+  "effect.bgamesmod.reach_boost": "Ultralcance",
+  "effect.bgamesmod.pickup_boost": "Ultra recogida"
 }

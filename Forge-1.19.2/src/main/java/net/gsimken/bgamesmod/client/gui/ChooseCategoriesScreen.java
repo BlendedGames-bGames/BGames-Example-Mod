@@ -120,6 +120,8 @@ public class ChooseCategoriesScreen extends AbstractContainerScreen<ChooseCatego
 		);
 		cognitiveButton = new ImageButton(xCenter-2*BUTTON_WIDTH, y+2*BUTTON_HEIGHT, 20, 18, 0, 0, 19, COGNITIVE_BUTTON_TEXTURE,20,37,
 				e -> {
+					player.closeContainer();
+					ModMessages.sendToServer(new ButtonOpenScreenC2SPacket(2));
 				}
 		);
 		linguisticButton = new ImageButton(xCenter+BUTTON_HEIGHT, y+2*BUTTON_HEIGHT, 20, 18, 0, 0, 19, LINGUISTIC_BUTTON_TEXTURE,20,37,

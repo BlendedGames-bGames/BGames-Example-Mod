@@ -3,10 +3,12 @@ package net.gsimken.bgamesmod.networking.packet;
 import net.gsimken.bgameslibrary.BgamesLibrary;
 import net.gsimken.bgameslibrary.bgames.BGamesLibraryTools;
 import net.gsimken.bgamesmod.client.triggers.ChooseCategoriesTrigger;
+import net.gsimken.bgamesmod.effects.ModEffects;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraftforge.network.NetworkEvent;
@@ -17,6 +19,7 @@ import java.util.function.Supplier;
 public class ButtonsBGamesInteractPacket {
 
     /*
+    ------PHYSICAL
     * EFFECT LVL DURATION : ID
     * Haste 3 10MIN : 0
     * Jump Boost 2 10 MIN : 1
@@ -28,6 +31,12 @@ public class ButtonsBGamesInteractPacket {
     * Health Boost 10 10MIN : 7
     * Night Vision 1 30MIN : 8
     * Resistance 4 5MIN :9
+    ------COGNITIVE
+    * DESCRIPTION : ID
+    * set 2 enchantsments : 10
+    * Reach Boost 10 20MIN: 11
+    * Pickup Boost 20 20MIN: 12
+    * TRANSMUTATION : 13
     * */
     private final int buttonId;
 
@@ -97,6 +106,23 @@ public class ButtonsBGamesInteractPacket {
                             effectLevel = 3;
                             player.addEffect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, minutes2Ticks(5), effectLevel, false, false));
                             break;
+                        case 10:
+                            if(player.experienceLevel<33){
+                                player.setExperienceLevels(33);
+                            }
+                            else{
+                                player.giveExperienceLevels(6);
+                            }
+                            break;
+                        case 11:
+                            effectLevel = 9;
+                            player.addEffect(new MobEffectInstance(ModEffects.REACH_BOOST.get(), minutes2Ticks(20), effectLevel, false, false));
+                            break;
+                        case 12:
+                            effectLevel = 19;
+                            player.addEffect(new MobEffectInstance(ModEffects.PICKUP_BOOST.get(), minutes2Ticks(20), effectLevel, false, false));
+                            break;
+
                     }
                 }
             }
