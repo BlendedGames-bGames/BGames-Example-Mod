@@ -5,19 +5,15 @@ import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public class PickUpRangeBoost extends MobEffect {
+public class PickUpRangeBoostEffect extends MobEffect {
 
-    public PickUpRangeBoost(MobEffectCategory mobEffectCategory, int color) {
+    public PickUpRangeBoostEffect(MobEffectCategory mobEffectCategory, int color) {
         super(mobEffectCategory, color);
     }
     @Override

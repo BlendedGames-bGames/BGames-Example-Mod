@@ -5,6 +5,7 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import net.gsimken.bgameslibrary.bgames.ClientBGamesPlayerData;
 import net.gsimken.bgamesmod.client.menus.ChooseCategoriesMenu;
 import net.gsimken.bgamesmod.client.menus.CognitiveCategoryMenu;
+import net.gsimken.bgamesmod.client.menus.SocialCategoryMenu;
 import net.gsimken.bgamesmod.client.utils.BGamesButton;
 import net.gsimken.bgamesmod.client.utils.ScreenHelper;
 import net.gsimken.bgamesmod.effects.ModEffects;
@@ -17,6 +18,7 @@ import net.minecraft.client.gui.components.ImageButton;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 
@@ -25,19 +27,19 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.function.Consumer;
 
-public class CognitiveCategoryEffectsScreen extends AbstractContainerScreen<CognitiveCategoryMenu> {
+public class SocialCategoryEffectsScreen extends AbstractContainerScreen<SocialCategoryMenu> {
 	private final static HashMap<String, Object> guistate = ChooseCategoriesMenu.guistate;
 	private final Player player;
-	BGamesButton experienceButton;
-	BGamesButton reachButton;
-	BGamesButton pickupButton;
+	BGamesButton heroButton;
+	BGamesButton areaRegenerationButton;
+	BGamesButton areaStrengthButton;
 	ScreenHelper screenHelper;
 
 	private static final ResourceLocation BACKGROUND_TEXTURE = new ResourceLocation("bgamesmod:textures/screens/backgrounds/generic_background.png");
 	private static final ResourceLocation BACK_BUTTON_TEXTURE = new ResourceLocation("bgamesmod:textures/screens/backgrounds/back_20x18.png");
-	private static final ResourceLocation EXPERIENCE_POINT_BUTTON_TEXTURE = new ResourceLocation("bgamesmod:textures/screens/cognitive_category/experience_bottle.png");
-	private static final ResourceLocation REACH_BOOST_EFFECT_BUTTON_TEXTURE = new ResourceLocation("bgamesmod:textures/screens/cognitive_category/reach_boost.png");
-	private static final ResourceLocation PICKUP_BOOST_EFFECT_BUTTON_TEXTURE = new ResourceLocation("bgamesmod:textures/screens/cognitive_category/pickup_boost.png");
+	private static final ResourceLocation HERO_VILLAGE_BUTTON_TEXTURE = new ResourceLocation("bgamesmod:textures/screens/social_category/hero_village.png");
+	private static final ResourceLocation AREA_REGENERATION_EFFECT_BUTTON_TEXTURE = new ResourceLocation("bgamesmod:textures/screens/social_category/area_regeneration.png");
+	private static final ResourceLocation AREA_STRENGTH_EFFECT_BUTTON_TEXTURE = new ResourceLocation("bgamesmod:textures/screens/social_category/area_strength.png");
 
 	private static final int BUTTONS_WIDTH = 29; //width of button texture
 	private static final int BUTTONS_HEIGHT = 26; //size of button texture unhovered
@@ -47,11 +49,11 @@ public class CognitiveCategoryEffectsScreen extends AbstractContainerScreen<Cogn
 
 
 
-	public CognitiveCategoryEffectsScreen(CognitiveCategoryMenu container, Inventory inventory, Component text) {
+	public SocialCategoryEffectsScreen(SocialCategoryMenu container, Inventory inventory, Component text) {
 		super(container, inventory, text);
 
 		this.player = container.player;
-		this.imageWidth = 400;
+		this.imageWidth = 450;
 		this.imageHeight = 180;
 	}
 
@@ -86,9 +88,7 @@ public class CognitiveCategoryEffectsScreen extends AbstractContainerScreen<Cogn
 	public void containerTick() {
 		super.containerTick();
 
-		if (!experienceButton.isReady()) {
-			experienceButton.decreaseCooldown();
-		}
+
 		effectCheck();
 	}
 
@@ -96,16 +96,16 @@ public class CognitiveCategoryEffectsScreen extends AbstractContainerScreen<Cogn
 	protected void renderLabels(PoseStack poseStack, int mouseX, int mouseY) {
 		int x;
 		Component consumePoints= Component.translatable("gui.bgamesmod.choose_category.label_consume_points");
-		Component cognitiveLabel=Component.translatable("gui.bgamesmod.choose_category.label_cognitive");
-		Component points  = ScreenHelper.getPoints(ClientBGamesPlayerData.getPlayerCognitivePoints());
+		Component socialLabel=Component.translatable("gui.bgamesmod.choose_category.label_social");
+		Component points  = ScreenHelper.getPoints(ClientBGamesPlayerData.getPlayerSocialPoints());
 
 
-		this.font.draw(poseStack,cognitiveLabel , this.screenHelper.tittleOffset(cognitiveLabel), 5, -12829636);
+		this.font.draw(poseStack,socialLabel , this.screenHelper.tittleOffset(socialLabel), 5, -12829636);
 		this.font.draw(poseStack, consumePoints, this.screenHelper.tittleOffset(consumePoints), 15, -12829636);
 		this.font.draw(poseStack, points, this.screenHelper.pointsTextOffset(points), 5, -12829636);
 		int y = (BUTTONS_HEIGHT*5/2) + 1;
 		Component effectValue = ScreenHelper.getPoints(-1);
-		Component[] effectNamesFirstRow= {Component.translatable("gui.bgamesmod.cognitive.experience_name"),ModEffects.REACH_BOOST.get().getDisplayName(),ModEffects.PICKUP_BOOST.get().getDisplayName()};
+		Component[] effectNamesFirstRow= {MobEffects.HERO_OF_THE_VILLAGE.getDisplayName(),ModEffects.AREA_REGENERATION.get().getDisplayName(),ModEffects.AREA_STRENGTH.get().getDisplayName()};
 		for(int i=0; i<3;i++){
 			 x = this.screenHelper.labelOffSet(effectNamesFirstRow[i],0,i);
 			this.font.draw(poseStack,effectNamesFirstRow[i],x, y, -12829636);
@@ -140,18 +140,19 @@ public class CognitiveCategoryEffectsScreen extends AbstractContainerScreen<Cogn
 
 	}
 	private void effectCheck(){
-		if(player.hasEffect(ModEffects.REACH_BOOST.get()) && reachButton!=null){
-			reachButton.setOff();
+
+		if(player.hasEffect(ModEffects.AREA_REGENERATION.get()) && areaRegenerationButton!=null){
+			areaRegenerationButton.setOff();
 		}else{
-			if(reachButton!=null && !reachButton.isEnabled()) {
-				reachButton.setOn();
+			if(areaRegenerationButton!=null && !areaRegenerationButton.isEnabled()) {
+				areaRegenerationButton.setOn();
 			}
 		}
-		if(player.hasEffect(ModEffects.PICKUP_BOOST.get()) && pickupButton!=null){
-			pickupButton.setOff();
+		if(player.hasEffect(ModEffects.AREA_STRENGTH.get()) && areaStrengthButton!=null){
+			areaStrengthButton.setOff();
 		}else{
-			if(pickupButton!=null && !pickupButton.isEnabled()) {
-				pickupButton.setOn();
+			if(areaStrengthButton!=null && !areaStrengthButton.isEnabled()) {
+				areaStrengthButton.setOn();
 			}
 		}
 
@@ -159,17 +160,19 @@ public class CognitiveCategoryEffectsScreen extends AbstractContainerScreen<Cogn
 	}
 	private void setFirstRowButtons(int y){
 		int x = this.screenHelper.elementOffset(BUTTONS_WIDTH,0,0);
-		experienceButton = new BGamesButton(x, y, BUTTONS_WIDTH, BUTTONS_HEIGHT, 0, 0, BUTTONS_HEIGHT+BUTTONS_OFFSET, EXPERIENCE_POINT_BUTTON_TEXTURE,BUTTONS_WIDTH,BUTTONS_TOTAL_HEIGHT,
+		heroButton = new BGamesButton(x, y, BUTTONS_WIDTH, BUTTONS_HEIGHT, 0, 0, BUTTONS_HEIGHT+BUTTONS_OFFSET, HERO_VILLAGE_BUTTON_TEXTURE,BUTTONS_WIDTH,BUTTONS_TOTAL_HEIGHT,
 				e -> {
-					experienceButton.setCooldown();
-					ModMessages.sendToServer(new ButtonsBGamesInteractPacket(3,0));
+
+					ModMessages.sendToServer(new ButtonsBGamesInteractPacket(0,0));
 				},
 				new Button.OnTooltip(){
 					@Override
 					public void onTooltip(Button buttonWidget, PoseStack matrices, int i, int j) {
 						List<Component> tooltip = new ArrayList<>();
-						tooltip.add(Component.translatable("gui.bgamesmod.cognitive.experience_button_description") );
-						tooltip.add(Component.translatable("gui.bgamesmod.cognitive.experience_button_details") );
+						String minutes="30:00";
+						String amplifier= "V";
+						tooltip.add(Component.literal(MobEffects.HERO_OF_THE_VILLAGE.getDisplayName().getString()+" "+amplifier) );
+						tooltip.add( Component.translatable("gui.minutes",minutes) );
 						renderComponentTooltip(matrices,tooltip,i,j);
 						}
 					@Override
@@ -180,9 +183,9 @@ public class CognitiveCategoryEffectsScreen extends AbstractContainerScreen<Cogn
 		x = this.screenHelper.elementOffset(BUTTONS_WIDTH,0,1);
 
 
-		reachButton = new BGamesButton(x, y, BUTTONS_WIDTH, BUTTONS_HEIGHT, 0, 0, BUTTONS_HEIGHT+BUTTONS_OFFSET, REACH_BOOST_EFFECT_BUTTON_TEXTURE,BUTTONS_WIDTH,BUTTONS_TOTAL_HEIGHT,
+		areaRegenerationButton = new BGamesButton(x, y, BUTTONS_WIDTH, BUTTONS_HEIGHT, 0, 0, BUTTONS_HEIGHT+BUTTONS_OFFSET, AREA_REGENERATION_EFFECT_BUTTON_TEXTURE,BUTTONS_WIDTH,BUTTONS_TOTAL_HEIGHT,
 				e -> {
-					ModMessages.sendToServer(new ButtonsBGamesInteractPacket(3,1));
+					ModMessages.sendToServer(new ButtonsBGamesInteractPacket(0,1));
 				},
 				new Button.OnTooltip(){
 					@Override
@@ -190,9 +193,9 @@ public class CognitiveCategoryEffectsScreen extends AbstractContainerScreen<Cogn
 						List<Component> tooltip = new ArrayList<>();
 						String minutes="20:00";
 						String amplifier= "X";
-						tooltip.add(Component.literal(ModEffects.REACH_BOOST.get().getDisplayName().getString()+" "+amplifier) );
+						tooltip.add(Component.literal(ModEffects.AREA_REGENERATION.get().getDisplayName().getString()+" "+amplifier) );
 						tooltip.add( Component.translatable("gui.minutes",minutes) );
-						tooltip.add(Component.translatable("gui.bgamesmod.cognitive.reach_boost_description") );
+						tooltip.add(Component.translatable("gui.bgamesmod.social.area_regeneration_description") );
 						renderComponentTooltip(matrices,tooltip,i,j);
 					}
 					@Override
@@ -201,19 +204,19 @@ public class CognitiveCategoryEffectsScreen extends AbstractContainerScreen<Cogn
 		);
 
 		x = this.screenHelper.elementOffset(BUTTONS_WIDTH,0,2);
-		pickupButton = new BGamesButton(x, y, BUTTONS_WIDTH, BUTTONS_HEIGHT, 0, 0, BUTTONS_HEIGHT+BUTTONS_OFFSET, PICKUP_BOOST_EFFECT_BUTTON_TEXTURE,BUTTONS_WIDTH,BUTTONS_TOTAL_HEIGHT,
+		areaStrengthButton = new BGamesButton(x, y, BUTTONS_WIDTH, BUTTONS_HEIGHT, 0, 0, BUTTONS_HEIGHT+BUTTONS_OFFSET, AREA_STRENGTH_EFFECT_BUTTON_TEXTURE,BUTTONS_WIDTH,BUTTONS_TOTAL_HEIGHT,
 				e -> {
-					ModMessages.sendToServer(new ButtonsBGamesInteractPacket(3,2));
+					ModMessages.sendToServer(new ButtonsBGamesInteractPacket(0,2));
 				},
 				new Button.OnTooltip(){
 					@Override
 					public void onTooltip(Button buttonWidget, PoseStack matrices, int i, int j) {
 						List<Component> tooltip = new ArrayList<>();
 						String minutes="20:00";
-						String amplifier= "XX";
-						tooltip.add(Component.literal(ModEffects.REACH_BOOST.get().getDisplayName().getString()+" "+amplifier) );
+						String amplifier= "X";
+						tooltip.add(Component.literal(ModEffects.AREA_STRENGTH.get().getDisplayName().getString()+" "+amplifier) );
 						tooltip.add( Component.translatable("gui.minutes",minutes) );
-						tooltip.add(Component.translatable("gui.bgamesmod.cognitive.pickup_boost_description") );
+						tooltip.add(Component.translatable("gui.bgamesmod.social.area_strength_description") );
 						renderComponentTooltip(matrices,tooltip,i,j);
 					}
 					@Override
@@ -222,12 +225,12 @@ public class CognitiveCategoryEffectsScreen extends AbstractContainerScreen<Cogn
 		);
 
 
-		guistate.put("button:experience_button", experienceButton);
-		guistate.put("button:reach_boost_button", reachButton);
-		guistate.put("button:pickup_boost_button", pickupButton);
-		this.addRenderableWidget(experienceButton);
-		this.addRenderableWidget(reachButton);
-		this.addRenderableWidget(pickupButton);
+		guistate.put("button:hero_button", heroButton);
+		guistate.put("button:area_regeneration_button", areaRegenerationButton);
+		guistate.put("button:area_strength_button", areaStrengthButton);
+		this.addRenderableWidget(heroButton);
+		this.addRenderableWidget(areaRegenerationButton);
+		this.addRenderableWidget(areaStrengthButton);
 
 
 	}

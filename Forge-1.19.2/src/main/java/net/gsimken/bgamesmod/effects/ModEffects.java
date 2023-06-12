@@ -19,7 +19,13 @@ public class ModEffects {
                             2.0, AttributeModifier.Operation.ADDITION)
     );
     public static final RegistryObject<MobEffect> PICKUP_BOOST = MOB_EFFECTS.register("pickup_boost",
-            ()->new PickUpRangeBoost(MobEffectCategory.BENEFICIAL,4653215)
+            ()->new PickUpRangeBoostEffect(MobEffectCategory.BENEFICIAL,4653215)
+    );
+    public static final RegistryObject<MobEffect> AREA_REGENERATION = MOB_EFFECTS.register("area_regeneration",
+            ()->new AreaRegenerationEffect(MobEffectCategory.BENEFICIAL,16711680)
+    );
+    public static final RegistryObject<MobEffect> AREA_STRENGTH = MOB_EFFECTS.register("area_strength",
+            ()->new AreaStrengthEffect(MobEffectCategory.BENEFICIAL,16711680)
     );
 
 

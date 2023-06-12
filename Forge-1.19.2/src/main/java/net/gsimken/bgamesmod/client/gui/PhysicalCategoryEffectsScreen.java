@@ -2,19 +2,18 @@ package net.gsimken.bgamesmod.client.gui;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
-import net.gsimken.bgameslibrary.bgames.BGamesPlayerData;
 import net.gsimken.bgameslibrary.bgames.ClientBGamesPlayerData;
 import net.gsimken.bgamesmod.client.menus.ChooseCategoriesMenu;
 import net.gsimken.bgamesmod.client.menus.PhysicalCategoryMenu;
 import net.gsimken.bgamesmod.client.utils.BGamesButton;
-import net.gsimken.bgamesmod.client.utils.ScreenUtils;
+import net.gsimken.bgamesmod.client.utils.ScreenHelper;
 import net.gsimken.bgamesmod.networking.ModMessages;
 import net.gsimken.bgamesmod.networking.packet.ButtonOpenScreenC2SPacket;
 import net.gsimken.bgamesmod.networking.packet.ButtonsBGamesInteractPacket;
 import net.minecraft.client.Minecraft;
-import net.gsimken.bgamesmod.client.utils.BGamesButton;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.components.Button;
+import net.minecraft.client.gui.components.ImageButton;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
@@ -39,18 +38,21 @@ public class PhysicalCategoryEffectsScreen extends AbstractContainerScreen<Physi
 	BGamesButton healthBoostButton;
 	BGamesButton nightVisionButton;
 	BGamesButton resistanceButton;
+	ScreenHelper screenHelper;
 
 	private static final ResourceLocation BACKGROUND_TEXTURE = new ResourceLocation("bgamesmod:textures/screens/backgrounds/generic_background.png");
-	private static final ResourceLocation HASTE_EFFECT_BUTTON_TEXTURE = new ResourceLocation("bgamesmod:textures/screens/physicalcategory/haste.png");
-	private static final ResourceLocation JUMP_BOOST_EFFECT_BUTTON_TEXTURE = new ResourceLocation("bgamesmod:textures/screens/physicalcategory/jump_boost.png");
-	private static final ResourceLocation SPEED_EFFECT_BUTTON_TEXTURE = new ResourceLocation("bgamesmod:textures/screens/physicalcategory/speed.png");
-	private static final ResourceLocation STRENGTH_EFFECT_BUTTON_TEXTURE = new ResourceLocation("bgamesmod:textures/screens/physicalcategory/strength.png");
-	private static final ResourceLocation REGENERATION_EFFECT_BUTTON_TEXTURE = new ResourceLocation("bgamesmod:textures/screens/physicalcategory/regeneration.png");
-	private static final ResourceLocation ABSORTION_EFFECT_BUTTON_TEXTURE = new ResourceLocation("bgamesmod:textures/screens/physicalcategory/absortion.png");
-	private static final ResourceLocation FIRE_RESISTANCE_EFFECT_BUTTON_TEXTURE = new ResourceLocation("bgamesmod:textures/screens/physicalcategory/fire_resistance.png");
-	private static final ResourceLocation HEALTH_BOOST_EFFECT_BUTTON_TEXTURE = new ResourceLocation("bgamesmod:textures/screens/physicalcategory/health_boost.png");
-	private static final ResourceLocation NIGHT_VISION_EFFECT_BUTTON_TEXTURE = new ResourceLocation("bgamesmod:textures/screens/physicalcategory/night_vision.png");
-	private static final ResourceLocation RESISTANCE_EFFECT_BUTTON_TEXTURE = new ResourceLocation("bgamesmod:textures/screens/physicalcategory/resistance.png");
+	private static final ResourceLocation BACK_BUTTON_TEXTURE = new ResourceLocation("bgamesmod:textures/screens/backgrounds/back_20x18.png");
+
+	private static final ResourceLocation HASTE_EFFECT_BUTTON_TEXTURE = new ResourceLocation("bgamesmod:textures/screens/physical_category/haste.png");
+	private static final ResourceLocation JUMP_BOOST_EFFECT_BUTTON_TEXTURE = new ResourceLocation("bgamesmod:textures/screens/physical_category/jump_boost.png");
+	private static final ResourceLocation SPEED_EFFECT_BUTTON_TEXTURE = new ResourceLocation("bgamesmod:textures/screens/physical_category/speed.png");
+	private static final ResourceLocation STRENGTH_EFFECT_BUTTON_TEXTURE = new ResourceLocation("bgamesmod:textures/screens/physical_category/strength.png");
+	private static final ResourceLocation REGENERATION_EFFECT_BUTTON_TEXTURE = new ResourceLocation("bgamesmod:textures/screens/physical_category/regeneration.png");
+	private static final ResourceLocation ABSORTION_EFFECT_BUTTON_TEXTURE = new ResourceLocation("bgamesmod:textures/screens/physical_category/absortion.png");
+	private static final ResourceLocation FIRE_RESISTANCE_EFFECT_BUTTON_TEXTURE = new ResourceLocation("bgamesmod:textures/screens/physical_category/fire_resistance.png");
+	private static final ResourceLocation HEALTH_BOOST_EFFECT_BUTTON_TEXTURE = new ResourceLocation("bgamesmod:textures/screens/physical_category/health_boost.png");
+	private static final ResourceLocation NIGHT_VISION_EFFECT_BUTTON_TEXTURE = new ResourceLocation("bgamesmod:textures/screens/physical_category/night_vision.png");
+	private static final ResourceLocation RESISTANCE_EFFECT_BUTTON_TEXTURE = new ResourceLocation("bgamesmod:textures/screens/physical_category/resistance.png");
 
 	private static final int BUTTONS_WIDTH = 29; //width of button texture
 	private static final int BUTTONS_HEIGHT = 26; //size of button texture unhovered
@@ -63,7 +65,7 @@ public class PhysicalCategoryEffectsScreen extends AbstractContainerScreen<Physi
 	public PhysicalCategoryEffectsScreen(PhysicalCategoryMenu container, Inventory inventory, Component text) {
 		super(container, inventory, text);
 		this.player = container.player;
-		this.imageWidth = 470;
+		this.imageWidth = 500;
 		this.imageHeight = 180;
 	}
 
@@ -82,8 +84,6 @@ public class PhysicalCategoryEffectsScreen extends AbstractContainerScreen<Physi
 		RenderSystem.defaultBlendFunc();
 		RenderSystem.setShaderTexture(0, BACKGROUND_TEXTURE);
 		this.blit(ms, this.leftPos, this.topPos, 0, 0, this.imageWidth, this.imageHeight, this.imageWidth, this.imageHeight);
-		RenderSystem.setShaderTexture(0, new ResourceLocation("bgamesmod:textures/screens/physical_button_20x18.png"));
-		this.blit(ms, this.leftPos + 5, this.topPos + 5, 0,0,20, 18 , 20, 37);
 		RenderSystem.disableBlend();
 	}
 
@@ -106,28 +106,29 @@ public class PhysicalCategoryEffectsScreen extends AbstractContainerScreen<Physi
 	protected void renderLabels(PoseStack poseStack, int mouseX, int mouseY) {
 		Component consumePoints= Component.translatable("gui.bgamesmod.choose_category.label_consume_points");
 		Component physicalLabel=Component.translatable("gui.bgamesmod.choose_category.label_physical");
-		Component points  = ScreenUtils.getPoints(ClientBGamesPlayerData.getPlayerPhysicalPoints());
+		Component points  = ScreenHelper.getPoints(ClientBGamesPlayerData.getPlayerPhysicalPoints());
 
 
-		this.font.draw(poseStack,physicalLabel , (this.imageWidth/2)-(this.font.width(physicalLabel)/2), 5, -12829636);
-		this.font.draw(poseStack, consumePoints, (this.imageWidth/2)-(this.font.width(consumePoints)/2), 15, -12829636);
-		this.font.draw(poseStack, points, this.imageWidth-this.font.width(points)-5, 5, -12829636);
-		int x = (this.imageWidth/11);
+		this.font.draw(poseStack,physicalLabel , this.screenHelper.tittleOffset(physicalLabel), 5, -12829636);
+		this.font.draw(poseStack, consumePoints, this.screenHelper.tittleOffset(consumePoints), 15, -12829636);
+		this.font.draw(poseStack, points, this.screenHelper.pointsTextOffset(points), 5, -12829636);
+		int x;
 		int y = (BUTTONS_HEIGHT*5/2) + 1;
-		Component effectValue = ScreenUtils.getPoints(-1);
+		Component effectValue = ScreenHelper.getPoints(-1);
 		Component[] effectNamesFirstRow= {MobEffects.DIG_SPEED.getDisplayName(),MobEffects.JUMP.getDisplayName(),MobEffects.MOVEMENT_SPEED.getDisplayName(),MobEffects.DAMAGE_BOOST.getDisplayName(),MobEffects.REGENERATION.getDisplayName()};
 		for(int i=0; i<5;i++){
-			this.font.draw(poseStack,effectNamesFirstRow[i], ScreenUtils.calculateCenteredX(x, BUTTONS_WIDTH, effectNamesFirstRow[i]) , y, -12829636);
-			this.font.draw(poseStack,effectValue,ScreenUtils.calculateCenteredX(x, BUTTONS_WIDTH, effectValue) , y+10, -12829636);
-			x= horizontalSpacing(x);
+			x = this.screenHelper.labelOffSet(effectNamesFirstRow[i],0,i);
+			this.font.draw(poseStack,effectNamesFirstRow[i],x, y, -12829636);
+			x = this.screenHelper.labelOffSet(effectValue, 0,i);
+			this.font.draw(poseStack,effectValue,x, y+10, -12829636);
 		}
-		x = (this.imageWidth/11);
 		y+= BUTTONS_HEIGHT*5/2;
 		Component[] effectNamesSecondRow= {MobEffects.ABSORPTION.getDisplayName(),MobEffects.FIRE_RESISTANCE.getDisplayName(),MobEffects.HEALTH_BOOST.getDisplayName(),MobEffects.NIGHT_VISION.getDisplayName(),MobEffects.DAMAGE_RESISTANCE.getDisplayName()};
 		for(int i=0; i<5;i++){
-			this.font.draw(poseStack,effectNamesSecondRow[i],ScreenUtils.calculateCenteredX(x, BUTTONS_WIDTH, effectNamesSecondRow[i]) , y, -12829636);
-			this.font.draw(poseStack,effectValue,ScreenUtils.calculateCenteredX(x, BUTTONS_WIDTH, effectValue) , y+10, -12829636);
-			x= horizontalSpacing(x);
+			x = this.screenHelper.labelOffSet(effectNamesSecondRow[i],0,i);
+			this.font.draw(poseStack,effectNamesSecondRow[i],x, y, -12829636);
+			x = this.screenHelper.labelOffSet(effectValue, 0,i);
+			this.font.draw(poseStack,effectValue,x, y+10, -12829636);
 		}
 
 
@@ -143,11 +144,19 @@ public class PhysicalCategoryEffectsScreen extends AbstractContainerScreen<Physi
 	public void init() {
 		super.init();
 		this.minecraft.keyboardHandler.setSendRepeatsToGui(true);
-		int x = this.leftPos + (this.imageWidth/11);
+		this.addRenderableWidget(new ImageButton(this.leftPos + 5, this.topPos + 5, 20, 18, 0, 0, 19,BACK_BUTTON_TEXTURE,20,37,
+				e ->{
+						ModMessages.sendToServer(new ButtonOpenScreenC2SPacket(0));
+
+					}
+		));
+
+		this.screenHelper = new ScreenHelper(this.imageWidth,5,this.leftPos);
 		int y = this.topPos + BUTTONS_HEIGHT*3/2;
-		setFirstRowButtons(x,y);
+		this.screenHelper.addRow(5);
+		setFirstRowButtons(y);
 		y+= BUTTONS_HEIGHT*5/2;
-		setSecondRowButtons(x,y);
+		setSecondRowButtons(y);
 
 
 	}
@@ -224,11 +233,12 @@ public class PhysicalCategoryEffectsScreen extends AbstractContainerScreen<Physi
 		}
 
 	}
-	private void setFirstRowButtons(int x,int y){
+	private void setFirstRowButtons(int y){
+		int x = this.screenHelper.elementOffset(BUTTONS_WIDTH,0,0);
 
 		hasteButton = new BGamesButton(x, y, BUTTONS_WIDTH, BUTTONS_HEIGHT, 0, 0, BUTTONS_HEIGHT+BUTTONS_OFFSET, HASTE_EFFECT_BUTTON_TEXTURE,BUTTONS_WIDTH,BUTTONS_TOTAL_HEIGHT,
 				e -> {
-					ModMessages.sendToServer(new ButtonsBGamesInteractPacket(0));
+					ModMessages.sendToServer(new ButtonsBGamesInteractPacket(1,0));
 				},
 				new Button.OnTooltip(){
 					@Override
@@ -248,10 +258,11 @@ public class PhysicalCategoryEffectsScreen extends AbstractContainerScreen<Physi
 				}
 			);
 
-		x = horizontalSpacing(x);
+		x = this.screenHelper.elementOffset(BUTTONS_WIDTH,0,1);
+
 		jumpBoostButton = new BGamesButton(x, y, BUTTONS_WIDTH, BUTTONS_HEIGHT, 0, 0, BUTTONS_HEIGHT+BUTTONS_OFFSET, JUMP_BOOST_EFFECT_BUTTON_TEXTURE,BUTTONS_WIDTH,BUTTONS_TOTAL_HEIGHT,
 				e -> {
-					ModMessages.sendToServer(new ButtonsBGamesInteractPacket(1));
+					ModMessages.sendToServer(new ButtonsBGamesInteractPacket(1,1));
 				},
 				new Button.OnTooltip(){
 					@Override
@@ -271,10 +282,11 @@ public class PhysicalCategoryEffectsScreen extends AbstractContainerScreen<Physi
 				}
 		);
 
-		x = horizontalSpacing(x);
+		x = this.screenHelper.elementOffset(BUTTONS_WIDTH,0,2);
+
 		speedButton = new BGamesButton(x, y, BUTTONS_WIDTH, BUTTONS_HEIGHT, 0, 0, BUTTONS_HEIGHT+BUTTONS_OFFSET, SPEED_EFFECT_BUTTON_TEXTURE,BUTTONS_WIDTH,BUTTONS_TOTAL_HEIGHT,
 				e -> {
-					ModMessages.sendToServer(new ButtonsBGamesInteractPacket(2));
+					ModMessages.sendToServer(new ButtonsBGamesInteractPacket(1,2));
 				},
 				new Button.OnTooltip(){
 					@Override
@@ -293,10 +305,11 @@ public class PhysicalCategoryEffectsScreen extends AbstractContainerScreen<Physi
 					public void narrateTooltip(Consumer<Component> consumer) {Button.OnTooltip.super.narrateTooltip(consumer);}
 				}
 		);
-		x = horizontalSpacing(x);
+		x = this.screenHelper.elementOffset(BUTTONS_WIDTH,0,3);
+
 		strengthButton = new BGamesButton(x, y, BUTTONS_WIDTH, BUTTONS_HEIGHT, 0, 0, BUTTONS_HEIGHT+BUTTONS_OFFSET, STRENGTH_EFFECT_BUTTON_TEXTURE,BUTTONS_WIDTH,BUTTONS_TOTAL_HEIGHT,
 				e -> {
-					ModMessages.sendToServer(new ButtonsBGamesInteractPacket(3));
+					ModMessages.sendToServer(new ButtonsBGamesInteractPacket(1,3));
 				},
 				new Button.OnTooltip(){
 					@Override
@@ -315,10 +328,11 @@ public class PhysicalCategoryEffectsScreen extends AbstractContainerScreen<Physi
 					public void narrateTooltip(Consumer<Component> consumer) {Button.OnTooltip.super.narrateTooltip(consumer);}
 				}
 		);
-		x = horizontalSpacing(x);
+		x = this.screenHelper.elementOffset(BUTTONS_WIDTH,0,4);
+
 		regenerationButton = new BGamesButton(x, y, BUTTONS_WIDTH, BUTTONS_HEIGHT, 0, 0, BUTTONS_HEIGHT+BUTTONS_OFFSET, REGENERATION_EFFECT_BUTTON_TEXTURE,BUTTONS_WIDTH,BUTTONS_TOTAL_HEIGHT,
 				e -> {
-					ModMessages.sendToServer(new ButtonsBGamesInteractPacket(4));
+					ModMessages.sendToServer(new ButtonsBGamesInteractPacket(1,4));
 				},
 				new Button.OnTooltip(){
 					@Override
@@ -350,11 +364,12 @@ public class PhysicalCategoryEffectsScreen extends AbstractContainerScreen<Physi
 		this.addRenderableWidget(regenerationButton);
 
 	}
-	private void setSecondRowButtons(int x,int y){
+	private void setSecondRowButtons(int y){
+		int x = this.screenHelper.elementOffset(BUTTONS_WIDTH,1,0);
 
 		absortionButton = new BGamesButton(x, y, BUTTONS_WIDTH, BUTTONS_HEIGHT, 0, 0, BUTTONS_HEIGHT+BUTTONS_OFFSET, ABSORTION_EFFECT_BUTTON_TEXTURE,BUTTONS_WIDTH,BUTTONS_TOTAL_HEIGHT,
 				e -> {
-					ModMessages.sendToServer(new ButtonsBGamesInteractPacket(5));
+					ModMessages.sendToServer(new ButtonsBGamesInteractPacket(1,5));
 				},
 				new Button.OnTooltip(){
 					@Override
@@ -374,10 +389,10 @@ public class PhysicalCategoryEffectsScreen extends AbstractContainerScreen<Physi
 				}
 		);
 
-		x = horizontalSpacing(x);
+		x = this.screenHelper.elementOffset(BUTTONS_WIDTH,1,1);
 		fireResistanceButton = new BGamesButton(x, y, BUTTONS_WIDTH, BUTTONS_HEIGHT, 0, 0, BUTTONS_HEIGHT+BUTTONS_OFFSET, FIRE_RESISTANCE_EFFECT_BUTTON_TEXTURE,BUTTONS_WIDTH,BUTTONS_TOTAL_HEIGHT,
 				e -> {
-					ModMessages.sendToServer(new ButtonsBGamesInteractPacket(6));
+					ModMessages.sendToServer(new ButtonsBGamesInteractPacket(1,6));
 				},
 				new Button.OnTooltip(){
 					@Override
@@ -397,10 +412,10 @@ public class PhysicalCategoryEffectsScreen extends AbstractContainerScreen<Physi
 				}
 		);
 
-		x = horizontalSpacing(x);
+		x = this.screenHelper.elementOffset(BUTTONS_WIDTH,1,2);
 		healthBoostButton = new BGamesButton(x, y, BUTTONS_WIDTH, BUTTONS_HEIGHT, 0, 0, BUTTONS_HEIGHT+BUTTONS_OFFSET, HEALTH_BOOST_EFFECT_BUTTON_TEXTURE,BUTTONS_WIDTH,BUTTONS_TOTAL_HEIGHT,
 				e -> {
-					ModMessages.sendToServer(new ButtonsBGamesInteractPacket(7));
+					ModMessages.sendToServer(new ButtonsBGamesInteractPacket(1,7));
 				},
 				new Button.OnTooltip(){
 					@Override
@@ -419,10 +434,10 @@ public class PhysicalCategoryEffectsScreen extends AbstractContainerScreen<Physi
 					public void narrateTooltip(Consumer<Component> consumer) {Button.OnTooltip.super.narrateTooltip(consumer);}
 				}
 		);
-		x = horizontalSpacing(x);
+		x = this.screenHelper.elementOffset(BUTTONS_WIDTH,1,3);
 		nightVisionButton = new BGamesButton(x, y, BUTTONS_WIDTH, BUTTONS_HEIGHT, 0, 0, BUTTONS_HEIGHT+BUTTONS_OFFSET, NIGHT_VISION_EFFECT_BUTTON_TEXTURE,BUTTONS_WIDTH,BUTTONS_TOTAL_HEIGHT,
 				e -> {
-					ModMessages.sendToServer(new ButtonsBGamesInteractPacket(8));
+					ModMessages.sendToServer(new ButtonsBGamesInteractPacket(1,8));
 				},
 				new Button.OnTooltip(){
 					@Override
@@ -441,10 +456,10 @@ public class PhysicalCategoryEffectsScreen extends AbstractContainerScreen<Physi
 					public void narrateTooltip(Consumer<Component> consumer) {Button.OnTooltip.super.narrateTooltip(consumer);}
 				}
 		);
-		x = horizontalSpacing(x);
+		x = this.screenHelper.elementOffset(BUTTONS_WIDTH,1,4);
 		resistanceButton = new BGamesButton(x, y, BUTTONS_WIDTH, BUTTONS_HEIGHT, 0, 0, BUTTONS_HEIGHT+BUTTONS_OFFSET, RESISTANCE_EFFECT_BUTTON_TEXTURE,BUTTONS_WIDTH,BUTTONS_TOTAL_HEIGHT,
 				e -> {
-					ModMessages.sendToServer(new ButtonsBGamesInteractPacket(9));
+					ModMessages.sendToServer(new ButtonsBGamesInteractPacket(1,9));
 				},
 				new Button.OnTooltip(){
 					@Override
@@ -475,9 +490,6 @@ public class PhysicalCategoryEffectsScreen extends AbstractContainerScreen<Physi
 		this.addRenderableWidget(nightVisionButton);
 		this.addRenderableWidget(resistanceButton);
 
-	}
-	private int horizontalSpacing(int x){
-		return x+(this.imageWidth/11)*2;
 	}
 
 

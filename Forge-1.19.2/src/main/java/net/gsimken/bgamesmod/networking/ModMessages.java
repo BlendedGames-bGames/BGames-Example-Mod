@@ -1,9 +1,11 @@
 package net.gsimken.bgamesmod.networking;
 
+import net.gsimken.bgameslibrary.networking.packet.BGamesPlayerDataSyncS2CPacket;
 import net.gsimken.bgamesmod.BgamesMod;
 
 import net.gsimken.bgamesmod.networking.packet.ButtonOpenScreenC2SPacket;
 import net.gsimken.bgamesmod.networking.packet.ButtonsBGamesInteractPacket;
+import net.gsimken.bgamesmod.networking.packet.CreateSquareRingParticleS2CPacket;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraftforge.network.NetworkDirection;
@@ -38,6 +40,11 @@ public class ModMessages {
                 .decoder(ButtonsBGamesInteractPacket::new)
                 .encoder(ButtonsBGamesInteractPacket::toBytes)
                 .consumerMainThread(ButtonsBGamesInteractPacket::handle)
+                .add();
+        net.messageBuilder(CreateSquareRingParticleS2CPacket.class, id(), NetworkDirection.PLAY_TO_CLIENT)
+                .decoder(CreateSquareRingParticleS2CPacket::new)
+                .encoder(CreateSquareRingParticleS2CPacket::toBytes)
+                .consumerMainThread(CreateSquareRingParticleS2CPacket::handle)
                 .add();
     }
 

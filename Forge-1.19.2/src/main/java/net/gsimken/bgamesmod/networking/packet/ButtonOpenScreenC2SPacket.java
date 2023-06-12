@@ -4,6 +4,7 @@ import net.gsimken.bgameslibrary.bgames.BGamesLibraryTools;
 import net.gsimken.bgamesmod.client.triggers.ChooseCategoriesTrigger;
 import net.gsimken.bgamesmod.client.triggers.CognitiveCategoryTrigger;
 import net.gsimken.bgamesmod.client.triggers.PhysicalCategoryTrigger;
+import net.gsimken.bgamesmod.client.triggers.SocialCategoryTrigger;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.chat.Component;
@@ -17,7 +18,8 @@ public class ButtonOpenScreenC2SPacket {
     /*
     * Screens id:
     * Choose Category: 0
-    * Physical Category:1
+    * Physical Category: 1
+    * Social Category: 2
     * */
     private final int screenId;
 
@@ -41,6 +43,9 @@ public class ButtonOpenScreenC2SPacket {
             // HERE WE ARE ON THE SERVER!
             ServerPlayer player = context.getSender();
             if(BGamesLibraryTools.isPlayerLogged(player)){
+                if(player.hasContainerOpen()){
+                    player.closeContainer();
+                }
                 switch (this.screenId){
                     case 0:
                         NetworkHooks.openScreen(player,new ChooseCategoriesTrigger());
@@ -50,6 +55,9 @@ public class ButtonOpenScreenC2SPacket {
                         break;
                     case 2:
                         NetworkHooks.openScreen(player,new CognitiveCategoryTrigger());
+                        break;
+                    case 3:
+                        NetworkHooks.openScreen(player,new SocialCategoryTrigger());
                         break;
                 }
 

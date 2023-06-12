@@ -3,7 +3,6 @@ package net.gsimken.bgamesmod.client.gui;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.gsimken.bgamesmod.client.menus.ChooseCategoriesMenu;
-import net.gsimken.bgamesmod.client.utils.ScreenUtils;
 import net.gsimken.bgamesmod.networking.ModMessages;
 import net.gsimken.bgamesmod.networking.packet.ButtonOpenScreenC2SPacket;
 import net.minecraft.client.Minecraft;
@@ -104,14 +103,12 @@ public class ChooseCategoriesScreen extends AbstractContainerScreen<ChooseCatego
 		int y = this.topPos + BUTTON_HEIGHT*2;
 		physicalButton = new ImageButton(xCenter-BUTTON_WIDTH/2, y, 20, 18, 0, 0, 19,PHYSICAL_BUTTON_TEXTURE,20,37,
 				e -> {
-					player.closeContainer();
 					ModMessages.sendToServer(new ButtonOpenScreenC2SPacket(1));
-
 				}
 		);
 		socialButton = new ImageButton(xCenter-3*BUTTON_WIDTH-BUTTON_WIDTH/2, y, 20, 18, 0, 0, 19, SOCIAL_BUTTON_TEXTURE,20,37,
 				e -> {
-
+					ModMessages.sendToServer(new ButtonOpenScreenC2SPacket(3));
 				}
 		);
 		affectiveButton = new ImageButton(xCenter+3*BUTTON_WIDTH-BUTTON_WIDTH/2, y, 20, 18, 0, 0, 19,AFFECTIVE_BUTTON_TEXTURE,20,37,
@@ -120,7 +117,7 @@ public class ChooseCategoriesScreen extends AbstractContainerScreen<ChooseCatego
 		);
 		cognitiveButton = new ImageButton(xCenter-2*BUTTON_WIDTH, y+2*BUTTON_HEIGHT, 20, 18, 0, 0, 19, COGNITIVE_BUTTON_TEXTURE,20,37,
 				e -> {
-					player.closeContainer();
+
 					ModMessages.sendToServer(new ButtonOpenScreenC2SPacket(2));
 				}
 		);

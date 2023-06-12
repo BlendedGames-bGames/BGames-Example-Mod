@@ -1,27 +1,26 @@
 {
-  "login.bgameslibrary.not_logged": "Not logged in bGames, please use /login command before play",
-
-  "gui.bgamesmod.choose_category.label_social": "Social",
-  "gui.bgamesmod.choose_category.label_physical":"Physical",
-  "gui.bgamesmod.choose_category.label_consume_points": "Consume points",
+  "effect.bgamesmod.area_regeneration": "Area Regeneration",
+  "effect.bgamesmod.area_strength": "Area Strength",
+  "effect.bgamesmod.pickup_boost": "Pick Up Boost",
+  "effect.bgamesmod.reach_boost": "Reach Boost",
   "gui.bgamesmod.choose_category.label_affective": "Affective",
   "gui.bgamesmod.choose_category.label_cognitive": "Cognitive",
+  "gui.bgamesmod.choose_category.label_consume_points": "Consume points",
   "gui.bgamesmod.choose_category.label_linguistic": "Linguistic",
-
-  "effect.bgamesmod.reach_boost": "Reach Boost",
-  "effect.bgamesmod.pickup_boost": "Pick Up Boost",
-
-  "item.minecraft.potion.effect.reach_boost_potion": "Reach Boost Potion",
-  "item.minecraft.splash_potion.effect.reach_boost_potion": "Splash Potion of Reach Boost",
-  "item.minecraft.lingering_potion.effect.reach_boost_potion": "Lingering Potion of Reach Boost",
-
-  "item.minecraft.potion.effect.pickup_boost_potion": "Pick Up Boost Potion",
-  "item.minecraft.splash_potion.effect.pickup_boost_potion": "Splash Potion of Pick Up Boost",
-  "item.minecraft.lingering_potion.effect.pickup_boost_potion": "Lingering Potion of Pick Up Boost",
-
+  "gui.bgamesmod.choose_category.label_physical": "Physical",
+  "gui.bgamesmod.choose_category.label_social": "Social",
   "gui.bgamesmod.cognitive.experience_button_description": "Give the exp for 2 enchantment",
   "gui.bgamesmod.cognitive.experience_button_details": "If player level < 33, set the player level to 33, else give to the player 6 levels",
-  "gui.bgamesmod.cognitive.reach_boost_description": "Increase the range to interact in 2 blocks per lvl",
+  "gui.bgamesmod.cognitive.experience_name": "Experience",
   "gui.bgamesmod.cognitive.pickup_boost_description": "Increase the range to pick up item in 2 blocks per lvl",
-  "gui.bgamesmod.cognitive.experience_name": "Experience"
+  "gui.bgamesmod.cognitive.reach_boost_description": "Increase the range to interact in 2 blocks per lvl",
+  "gui.bgamesmod.social.area_regeneration_description": "Apply Regeneration II for players, pets or horses",
+  "gui.bgamesmod.social.area_strength_description": "Apply Strength III to nearby players, pets or horses ",
+  "item.minecraft.lingering_potion.effect.pickup_boost_potion": "Lingering Potion of Pick Up Boost",
+  "item.minecraft.lingering_potion.effect.reach_boost_potion": "Lingering Potion of Reach Boost",
+  "item.minecraft.potion.effect.pickup_boost_potion": "Pick Up Boost Potion",
+  "item.minecraft.potion.effect.reach_boost_potion": "Reach Boost Potion",
+  "item.minecraft.splash_potion.effect.pickup_boost_potion": "Splash Potion of Pick Up Boost",
+  "item.minecraft.splash_potion.effect.reach_boost_potion": "Splash Potion of Reach Boost",
+  "login.bgameslibrary.not_logged": "Not logged in bGames, please use /login command before play"
 }

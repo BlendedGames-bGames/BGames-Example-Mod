@@ -1,13 +1,26 @@
 {
-  "login.bgameslibrary.not_logged": "No has iniciado sesión, por favor usa /login antes de jugar",
-
-  "gui.bgamesmod.choose_category.label_social": "Social",
-  "gui.bgamesmod.choose_category.label_physical": "Fisico",
-  "gui.bgamesmod.choose_category.label_consume_points": "Consumir puntos",
+  "effect.bgamesmod.area_regeneration": "Area de Regeneración",
+  "effect.bgamesmod.area_strength": "Area de Fuerza",
+  "effect.bgamesmod.pickup_boost": "Ultrarecogida",
+  "effect.bgamesmod.reach_boost": "Ultralcance",
   "gui.bgamesmod.choose_category.label_affective": "Afectivo",
   "gui.bgamesmod.choose_category.label_cognitive": "Cognitivo",
+  "gui.bgamesmod.choose_category.label_consume_points": "Consumir puntos",
   "gui.bgamesmod.choose_category.label_linguistic": "Linguistico",
-
-  "effect.bgamesmod.reach_boost": "Ultralcance",
-  "effect.bgamesmod.pickup_boost": "Ultra recogida"
+  "gui.bgamesmod.choose_category.label_physical": "Fisico",
+  "gui.bgamesmod.choose_category.label_social": "Social",
+  "gui.bgamesmod.cognitive.experience_button_description": "Give the exp for 2 enchantment",
+  "gui.bgamesmod.cognitive.experience_button_details": "If player level < 33, set the player level to 33, else give to the player 6 levels",
+  "gui.bgamesmod.cognitive.experience_name": "Experience",
+  "gui.bgamesmod.cognitive.pickup_boost_description": "Increase the range to pick up item in 2 blocks per lvl",
+  "gui.bgamesmod.cognitive.reach_boost_description": "Increase the range to interact in 2 blocks per lvl",
+  "gui.bgamesmod.social.area_regeneration_description": "Aplica Regeneración II a jugadores, mascotas o caballos a tu alrededor",
+  "gui.bgamesmod.social.area_strength_description": "Aplica Fuerza III a jugadores, mascotas o caballos a tu alrededor",
+  "item.minecraft.lingering_potion.effect.pickup_boost_potion": "Poción persistente de Ultrarecogida",
+  "item.minecraft.lingering_potion.effect.reach_boost_potion": "Poción persistente de Ultralcance",
+  "item.minecraft.potion.effect.pickup_boost_potion": "Poción de Ultrarecogida ",
+  "item.minecraft.potion.effect.reach_boost_potion": "Poción de Ultralcance",
+  "item.minecraft.splash_potion.effect.pickup_boost_potion": "Poción arrojadiza de Ultrarecogida ",
+  "item.minecraft.splash_potion.effect.reach_boost_potion": "Poción arrojadiza de Ultralcance",
+  "login.bgameslibrary.not_logged": "No has iniciado sesión, por favor usa /login antes de jugar"
 }

@@ -78,7 +78,7 @@ public class BGamesButton extends Button {
     }
     public void setCooldown(){
         this.setOff();
-        this.cooldown = 20; //1sec
+        this.cooldown = 10; //1sec
 
     }
     public void setCooldown(int ticks){
