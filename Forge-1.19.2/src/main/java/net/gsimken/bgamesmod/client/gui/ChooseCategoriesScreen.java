@@ -20,15 +20,11 @@ public class ChooseCategoriesScreen extends AbstractContainerScreen<ChooseCatego
 	private final Player player;
 	ImageButton socialButton;
 	ImageButton physicalButton;
-	ImageButton affectiveButton;
 	ImageButton cognitiveButton;
-	ImageButton linguisticButton;
 	private static final ResourceLocation BACKGROUND_TEXTURE = new ResourceLocation("bgamesmod:textures/screens/backgrounds/generic_background.png");
 	private static final ResourceLocation SOCIAL_BUTTON_TEXTURE = new ResourceLocation("bgamesmod:textures/screens/social_button_20x18.png");
 	private static final ResourceLocation COGNITIVE_BUTTON_TEXTURE = new ResourceLocation("bgamesmod:textures/screens/cognitive_button_20x18.png");
-	private static final ResourceLocation LINGUISTIC_BUTTON_TEXTURE = new ResourceLocation("bgamesmod:textures/screens/linguistic_button_20x18.png");
 	private static final ResourceLocation PHYSICAL_BUTTON_TEXTURE = new ResourceLocation("bgamesmod:textures/screens/physical_button_20x18.png");
-	private static final ResourceLocation AFFECTIVE_BUTTON_TEXTURE = new ResourceLocation("bgamesmod:textures/screens/affective_button_20x18.png");
 	private int BUTTON_WIDTH = 20;
 	private int BUTTON_HEIGHT  = 18;
 	public ChooseCategoriesScreen(ChooseCategoriesMenu container, Inventory inventory, Component text) {
@@ -74,18 +70,15 @@ public class ChooseCategoriesScreen extends AbstractContainerScreen<ChooseCatego
 	protected void renderLabels(PoseStack poseStack, int mouseX, int mouseY) {
 		int xCenter  = this.imageWidth/2;
 		int y = BUTTON_HEIGHT*3+1;
+		Component cognitiveLabel =  Component.translatable("gui.bgamesmod.choose_category.label_cognitive");
+		this.font.draw(poseStack, cognitiveLabel, xCenter+3*BUTTON_WIDTH-this.font.width(cognitiveLabel)/2, y, -12829636);
 		Component socialLabel =  Component.translatable("gui.bgamesmod.choose_category.label_social");
 		this.font.draw(poseStack,socialLabel,xCenter-3*BUTTON_WIDTH-this.font.width(socialLabel)/2 , y, -12829636);
 		Component physicalLabel =  Component.translatable("gui.bgamesmod.choose_category.label_physical");
 		this.font.draw(poseStack,physicalLabel, xCenter-this.font.width(physicalLabel)/2, y, -12829636);
 		Component consumePointsLabel =  Component.translatable("gui.bgamesmod.choose_category.label_consume_points");
 		this.font.draw(poseStack,consumePointsLabel ,xCenter-this.font.width(consumePointsLabel)/2 , 10, -12829636);
-		Component affectiveLabel =  Component.translatable("gui.bgamesmod.choose_category.label_affective");
-		this.font.draw(poseStack,affectiveLabel , xCenter+3*BUTTON_WIDTH-this.font.width(affectiveLabel)/2, y, -12829636);
-		Component cognitiveLabel =  Component.translatable("gui.bgamesmod.choose_category.label_cognitive");
-		this.font.draw(poseStack, cognitiveLabel, xCenter-3*BUTTON_WIDTH/2-this.font.width(cognitiveLabel)/2, y+2*BUTTON_HEIGHT, -12829636);
-		Component linguisticLabel =  Component.translatable("gui.bgamesmod.choose_category.label_linguistic");
-		this.font.draw(poseStack, linguisticLabel, xCenter+3*BUTTON_WIDTH/2-this.font.width(cognitiveLabel)/2, y+2*BUTTON_HEIGHT, -12829636);
+
 	}
 
 	@Override
@@ -111,29 +104,19 @@ public class ChooseCategoriesScreen extends AbstractContainerScreen<ChooseCatego
 					ModMessages.sendToServer(new ButtonOpenScreenC2SPacket(3));
 				}
 		);
-		affectiveButton = new ImageButton(xCenter+3*BUTTON_WIDTH-BUTTON_WIDTH/2, y, 20, 18, 0, 0, 19,AFFECTIVE_BUTTON_TEXTURE,20,37,
-				e -> {
-				}
-		);
-		cognitiveButton = new ImageButton(xCenter-2*BUTTON_WIDTH, y+2*BUTTON_HEIGHT, 20, 18, 0, 0, 19, COGNITIVE_BUTTON_TEXTURE,20,37,
+
+		cognitiveButton = new ImageButton(xCenter+3*BUTTON_WIDTH-BUTTON_WIDTH/2, y, 20, 18, 0, 0, 19, COGNITIVE_BUTTON_TEXTURE,20,37,
 				e -> {
 
 					ModMessages.sendToServer(new ButtonOpenScreenC2SPacket(2));
 				}
 		);
-		linguisticButton = new ImageButton(xCenter+BUTTON_HEIGHT, y+2*BUTTON_HEIGHT, 20, 18, 0, 0, 19, LINGUISTIC_BUTTON_TEXTURE,20,37,
-				e -> {
-				}
-		);
+
 		guistate.put("button:social_button", socialButton);
 		guistate.put("button:physical_button", physicalButton);
-		guistate.put("button:affective_button", affectiveButton);
 		guistate.put("button:cognitive_button", cognitiveButton);
-		guistate.put("button:linguistic_button", linguisticButton);
 		this.addRenderableWidget(socialButton);
 		this.addRenderableWidget(physicalButton);
-		this.addRenderableWidget(affectiveButton);
 		this.addRenderableWidget(cognitiveButton);
-		this.addRenderableWidget(linguisticButton);
 	}
 }
