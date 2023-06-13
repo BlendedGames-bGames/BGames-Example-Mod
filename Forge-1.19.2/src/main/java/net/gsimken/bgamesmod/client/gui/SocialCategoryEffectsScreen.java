@@ -4,14 +4,13 @@ import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.gsimken.bgameslibrary.bgames.ClientBGamesPlayerData;
 import net.gsimken.bgamesmod.client.menus.ChooseCategoriesMenu;
-import net.gsimken.bgamesmod.client.menus.CognitiveCategoryMenu;
 import net.gsimken.bgamesmod.client.menus.SocialCategoryMenu;
 import net.gsimken.bgamesmod.client.utils.BGamesButton;
 import net.gsimken.bgamesmod.client.utils.ScreenHelper;
 import net.gsimken.bgamesmod.effects.ModEffects;
 import net.gsimken.bgamesmod.networking.ModMessages;
 import net.gsimken.bgamesmod.networking.packet.ButtonOpenScreenC2SPacket;
-import net.gsimken.bgamesmod.networking.packet.ButtonsBGamesInteractPacket;
+import net.gsimken.bgamesmod.networking.packet.ButtonsBGamesInteractC2SPacket;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.components.ImageButton;
@@ -163,7 +162,7 @@ public class SocialCategoryEffectsScreen extends AbstractContainerScreen<SocialC
 		heroButton = new BGamesButton(x, y, BUTTONS_WIDTH, BUTTONS_HEIGHT, 0, 0, BUTTONS_HEIGHT+BUTTONS_OFFSET, HERO_VILLAGE_BUTTON_TEXTURE,BUTTONS_WIDTH,BUTTONS_TOTAL_HEIGHT,
 				e -> {
 
-					ModMessages.sendToServer(new ButtonsBGamesInteractPacket(0,0));
+					ModMessages.sendToServer(new ButtonsBGamesInteractC2SPacket(0,0));
 				},
 				new Button.OnTooltip(){
 					@Override
@@ -185,7 +184,7 @@ public class SocialCategoryEffectsScreen extends AbstractContainerScreen<SocialC
 
 		areaRegenerationButton = new BGamesButton(x, y, BUTTONS_WIDTH, BUTTONS_HEIGHT, 0, 0, BUTTONS_HEIGHT+BUTTONS_OFFSET, AREA_REGENERATION_EFFECT_BUTTON_TEXTURE,BUTTONS_WIDTH,BUTTONS_TOTAL_HEIGHT,
 				e -> {
-					ModMessages.sendToServer(new ButtonsBGamesInteractPacket(0,1));
+					ModMessages.sendToServer(new ButtonsBGamesInteractC2SPacket(0,1));
 				},
 				new Button.OnTooltip(){
 					@Override
@@ -206,7 +205,7 @@ public class SocialCategoryEffectsScreen extends AbstractContainerScreen<SocialC
 		x = this.screenHelper.elementOffset(BUTTONS_WIDTH,0,2);
 		areaStrengthButton = new BGamesButton(x, y, BUTTONS_WIDTH, BUTTONS_HEIGHT, 0, 0, BUTTONS_HEIGHT+BUTTONS_OFFSET, AREA_STRENGTH_EFFECT_BUTTON_TEXTURE,BUTTONS_WIDTH,BUTTONS_TOTAL_HEIGHT,
 				e -> {
-					ModMessages.sendToServer(new ButtonsBGamesInteractPacket(0,2));
+					ModMessages.sendToServer(new ButtonsBGamesInteractC2SPacket(0,2));
 				},
 				new Button.OnTooltip(){
 					@Override

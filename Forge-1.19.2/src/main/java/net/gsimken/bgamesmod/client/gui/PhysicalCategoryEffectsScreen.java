@@ -9,7 +9,7 @@ import net.gsimken.bgamesmod.client.utils.BGamesButton;
 import net.gsimken.bgamesmod.client.utils.ScreenHelper;
 import net.gsimken.bgamesmod.networking.ModMessages;
 import net.gsimken.bgamesmod.networking.packet.ButtonOpenScreenC2SPacket;
-import net.gsimken.bgamesmod.networking.packet.ButtonsBGamesInteractPacket;
+import net.gsimken.bgamesmod.networking.packet.ButtonsBGamesInteractC2SPacket;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.components.Button;
@@ -238,7 +238,7 @@ public class PhysicalCategoryEffectsScreen extends AbstractContainerScreen<Physi
 
 		hasteButton = new BGamesButton(x, y, BUTTONS_WIDTH, BUTTONS_HEIGHT, 0, 0, BUTTONS_HEIGHT+BUTTONS_OFFSET, HASTE_EFFECT_BUTTON_TEXTURE,BUTTONS_WIDTH,BUTTONS_TOTAL_HEIGHT,
 				e -> {
-					ModMessages.sendToServer(new ButtonsBGamesInteractPacket(1,0));
+					ModMessages.sendToServer(new ButtonsBGamesInteractC2SPacket(1,0));
 				},
 				new Button.OnTooltip(){
 					@Override
@@ -262,7 +262,7 @@ public class PhysicalCategoryEffectsScreen extends AbstractContainerScreen<Physi
 
 		jumpBoostButton = new BGamesButton(x, y, BUTTONS_WIDTH, BUTTONS_HEIGHT, 0, 0, BUTTONS_HEIGHT+BUTTONS_OFFSET, JUMP_BOOST_EFFECT_BUTTON_TEXTURE,BUTTONS_WIDTH,BUTTONS_TOTAL_HEIGHT,
 				e -> {
-					ModMessages.sendToServer(new ButtonsBGamesInteractPacket(1,1));
+					ModMessages.sendToServer(new ButtonsBGamesInteractC2SPacket(1,1));
 				},
 				new Button.OnTooltip(){
 					@Override
@@ -286,7 +286,7 @@ public class PhysicalCategoryEffectsScreen extends AbstractContainerScreen<Physi
 
 		speedButton = new BGamesButton(x, y, BUTTONS_WIDTH, BUTTONS_HEIGHT, 0, 0, BUTTONS_HEIGHT+BUTTONS_OFFSET, SPEED_EFFECT_BUTTON_TEXTURE,BUTTONS_WIDTH,BUTTONS_TOTAL_HEIGHT,
 				e -> {
-					ModMessages.sendToServer(new ButtonsBGamesInteractPacket(1,2));
+					ModMessages.sendToServer(new ButtonsBGamesInteractC2SPacket(1,2));
 				},
 				new Button.OnTooltip(){
 					@Override
@@ -309,7 +309,7 @@ public class PhysicalCategoryEffectsScreen extends AbstractContainerScreen<Physi
 
 		strengthButton = new BGamesButton(x, y, BUTTONS_WIDTH, BUTTONS_HEIGHT, 0, 0, BUTTONS_HEIGHT+BUTTONS_OFFSET, STRENGTH_EFFECT_BUTTON_TEXTURE,BUTTONS_WIDTH,BUTTONS_TOTAL_HEIGHT,
 				e -> {
-					ModMessages.sendToServer(new ButtonsBGamesInteractPacket(1,3));
+					ModMessages.sendToServer(new ButtonsBGamesInteractC2SPacket(1,3));
 				},
 				new Button.OnTooltip(){
 					@Override
@@ -332,7 +332,7 @@ public class PhysicalCategoryEffectsScreen extends AbstractContainerScreen<Physi
 
 		regenerationButton = new BGamesButton(x, y, BUTTONS_WIDTH, BUTTONS_HEIGHT, 0, 0, BUTTONS_HEIGHT+BUTTONS_OFFSET, REGENERATION_EFFECT_BUTTON_TEXTURE,BUTTONS_WIDTH,BUTTONS_TOTAL_HEIGHT,
 				e -> {
-					ModMessages.sendToServer(new ButtonsBGamesInteractPacket(1,4));
+					ModMessages.sendToServer(new ButtonsBGamesInteractC2SPacket(1,4));
 				},
 				new Button.OnTooltip(){
 					@Override
@@ -369,7 +369,7 @@ public class PhysicalCategoryEffectsScreen extends AbstractContainerScreen<Physi
 
 		absortionButton = new BGamesButton(x, y, BUTTONS_WIDTH, BUTTONS_HEIGHT, 0, 0, BUTTONS_HEIGHT+BUTTONS_OFFSET, ABSORTION_EFFECT_BUTTON_TEXTURE,BUTTONS_WIDTH,BUTTONS_TOTAL_HEIGHT,
 				e -> {
-					ModMessages.sendToServer(new ButtonsBGamesInteractPacket(1,5));
+					ModMessages.sendToServer(new ButtonsBGamesInteractC2SPacket(1,5));
 				},
 				new Button.OnTooltip(){
 					@Override
@@ -392,7 +392,7 @@ public class PhysicalCategoryEffectsScreen extends AbstractContainerScreen<Physi
 		x = this.screenHelper.elementOffset(BUTTONS_WIDTH,1,1);
 		fireResistanceButton = new BGamesButton(x, y, BUTTONS_WIDTH, BUTTONS_HEIGHT, 0, 0, BUTTONS_HEIGHT+BUTTONS_OFFSET, FIRE_RESISTANCE_EFFECT_BUTTON_TEXTURE,BUTTONS_WIDTH,BUTTONS_TOTAL_HEIGHT,
 				e -> {
-					ModMessages.sendToServer(new ButtonsBGamesInteractPacket(1,6));
+					ModMessages.sendToServer(new ButtonsBGamesInteractC2SPacket(1,6));
 				},
 				new Button.OnTooltip(){
 					@Override
@@ -415,7 +415,7 @@ public class PhysicalCategoryEffectsScreen extends AbstractContainerScreen<Physi
 		x = this.screenHelper.elementOffset(BUTTONS_WIDTH,1,2);
 		healthBoostButton = new BGamesButton(x, y, BUTTONS_WIDTH, BUTTONS_HEIGHT, 0, 0, BUTTONS_HEIGHT+BUTTONS_OFFSET, HEALTH_BOOST_EFFECT_BUTTON_TEXTURE,BUTTONS_WIDTH,BUTTONS_TOTAL_HEIGHT,
 				e -> {
-					ModMessages.sendToServer(new ButtonsBGamesInteractPacket(1,7));
+					ModMessages.sendToServer(new ButtonsBGamesInteractC2SPacket(1,7));
 				},
 				new Button.OnTooltip(){
 					@Override
@@ -437,7 +437,7 @@ public class PhysicalCategoryEffectsScreen extends AbstractContainerScreen<Physi
 		x = this.screenHelper.elementOffset(BUTTONS_WIDTH,1,3);
 		nightVisionButton = new BGamesButton(x, y, BUTTONS_WIDTH, BUTTONS_HEIGHT, 0, 0, BUTTONS_HEIGHT+BUTTONS_OFFSET, NIGHT_VISION_EFFECT_BUTTON_TEXTURE,BUTTONS_WIDTH,BUTTONS_TOTAL_HEIGHT,
 				e -> {
-					ModMessages.sendToServer(new ButtonsBGamesInteractPacket(1,8));
+					ModMessages.sendToServer(new ButtonsBGamesInteractC2SPacket(1,8));
 				},
 				new Button.OnTooltip(){
 					@Override
@@ -459,7 +459,7 @@ public class PhysicalCategoryEffectsScreen extends AbstractContainerScreen<Physi
 		x = this.screenHelper.elementOffset(BUTTONS_WIDTH,1,4);
 		resistanceButton = new BGamesButton(x, y, BUTTONS_WIDTH, BUTTONS_HEIGHT, 0, 0, BUTTONS_HEIGHT+BUTTONS_OFFSET, RESISTANCE_EFFECT_BUTTON_TEXTURE,BUTTONS_WIDTH,BUTTONS_TOTAL_HEIGHT,
 				e -> {
-					ModMessages.sendToServer(new ButtonsBGamesInteractPacket(1,9));
+					ModMessages.sendToServer(new ButtonsBGamesInteractC2SPacket(1,9));
 				},
 				new Button.OnTooltip(){
 					@Override

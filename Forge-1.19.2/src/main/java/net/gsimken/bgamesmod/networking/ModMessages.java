@@ -1,10 +1,9 @@
 package net.gsimken.bgamesmod.networking;
 
-import net.gsimken.bgameslibrary.networking.packet.BGamesPlayerDataSyncS2CPacket;
 import net.gsimken.bgamesmod.BgamesMod;
 
 import net.gsimken.bgamesmod.networking.packet.ButtonOpenScreenC2SPacket;
-import net.gsimken.bgamesmod.networking.packet.ButtonsBGamesInteractPacket;
+import net.gsimken.bgamesmod.networking.packet.ButtonsBGamesInteractC2SPacket;
 import net.gsimken.bgamesmod.networking.packet.CreateSquareRingParticleS2CPacket;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
@@ -36,10 +35,10 @@ public class ModMessages {
                 .encoder(ButtonOpenScreenC2SPacket::toBytes)
                 .consumerMainThread(ButtonOpenScreenC2SPacket::handle)
                 .add();
-        net.messageBuilder(ButtonsBGamesInteractPacket.class, id(), NetworkDirection.PLAY_TO_SERVER)
-                .decoder(ButtonsBGamesInteractPacket::new)
-                .encoder(ButtonsBGamesInteractPacket::toBytes)
-                .consumerMainThread(ButtonsBGamesInteractPacket::handle)
+        net.messageBuilder(ButtonsBGamesInteractC2SPacket.class, id(), NetworkDirection.PLAY_TO_SERVER)
+                .decoder(ButtonsBGamesInteractC2SPacket::new)
+                .encoder(ButtonsBGamesInteractC2SPacket::toBytes)
+                .consumerMainThread(ButtonsBGamesInteractC2SPacket::handle)
                 .add();
         net.messageBuilder(CreateSquareRingParticleS2CPacket.class, id(), NetworkDirection.PLAY_TO_CLIENT)
                 .decoder(CreateSquareRingParticleS2CPacket::new)

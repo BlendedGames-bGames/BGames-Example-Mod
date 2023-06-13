@@ -64,7 +64,6 @@ public class ButtonOpenScreenC2SPacket {
             }
             else{
                 player.sendSystemMessage(Component.translatable(  "login.bgameslibrary.not_logged").withStyle(ChatFormatting.RED));
-
             }
 
 

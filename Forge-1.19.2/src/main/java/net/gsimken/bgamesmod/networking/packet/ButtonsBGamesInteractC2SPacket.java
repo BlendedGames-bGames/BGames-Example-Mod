@@ -2,21 +2,18 @@ package net.gsimken.bgamesmod.networking.packet;
 
 import net.gsimken.bgameslibrary.BgamesLibrary;
 import net.gsimken.bgameslibrary.bgames.BGamesLibraryTools;
-import net.gsimken.bgamesmod.client.triggers.ChooseCategoriesTrigger;
 import net.gsimken.bgamesmod.effects.ModEffects;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraftforge.network.NetworkEvent;
-import net.minecraftforge.network.NetworkHooks;
 
 import java.util.function.Supplier;
 
-public class ButtonsBGamesInteractPacket {
+public class ButtonsBGamesInteractC2SPacket {
 
     /*
 
@@ -46,13 +43,13 @@ public class ButtonsBGamesInteractPacket {
     private final int buttonId;
 
 
-    public ButtonsBGamesInteractPacket(int categoryId,int buttonId) {
+    public ButtonsBGamesInteractC2SPacket(int categoryId, int buttonId) {
         this.buttonId = buttonId;
         this.categoryId = categoryId;
 
     }
 
-    public ButtonsBGamesInteractPacket(FriendlyByteBuf buf) {
+    public ButtonsBGamesInteractC2SPacket(FriendlyByteBuf buf) {
         this.buttonId = buf.readInt();
         this.categoryId = buf.readInt();
     }

@@ -10,7 +10,7 @@ import net.gsimken.bgamesmod.client.utils.ScreenHelper;
 import net.gsimken.bgamesmod.effects.ModEffects;
 import net.gsimken.bgamesmod.networking.ModMessages;
 import net.gsimken.bgamesmod.networking.packet.ButtonOpenScreenC2SPacket;
-import net.gsimken.bgamesmod.networking.packet.ButtonsBGamesInteractPacket;
+import net.gsimken.bgamesmod.networking.packet.ButtonsBGamesInteractC2SPacket;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.components.ImageButton;
@@ -162,7 +162,7 @@ public class CognitiveCategoryEffectsScreen extends AbstractContainerScreen<Cogn
 		experienceButton = new BGamesButton(x, y, BUTTONS_WIDTH, BUTTONS_HEIGHT, 0, 0, BUTTONS_HEIGHT+BUTTONS_OFFSET, EXPERIENCE_POINT_BUTTON_TEXTURE,BUTTONS_WIDTH,BUTTONS_TOTAL_HEIGHT,
 				e -> {
 					experienceButton.setCooldown();
-					ModMessages.sendToServer(new ButtonsBGamesInteractPacket(3,0));
+					ModMessages.sendToServer(new ButtonsBGamesInteractC2SPacket(3,0));
 				},
 				new Button.OnTooltip(){
 					@Override
@@ -182,7 +182,7 @@ public class CognitiveCategoryEffectsScreen extends AbstractContainerScreen<Cogn
 
 		reachButton = new BGamesButton(x, y, BUTTONS_WIDTH, BUTTONS_HEIGHT, 0, 0, BUTTONS_HEIGHT+BUTTONS_OFFSET, REACH_BOOST_EFFECT_BUTTON_TEXTURE,BUTTONS_WIDTH,BUTTONS_TOTAL_HEIGHT,
 				e -> {
-					ModMessages.sendToServer(new ButtonsBGamesInteractPacket(3,1));
+					ModMessages.sendToServer(new ButtonsBGamesInteractC2SPacket(3,1));
 				},
 				new Button.OnTooltip(){
 					@Override
@@ -203,7 +203,7 @@ public class CognitiveCategoryEffectsScreen extends AbstractContainerScreen<Cogn
 		x = this.screenHelper.elementOffset(BUTTONS_WIDTH,0,2);
 		pickupButton = new BGamesButton(x, y, BUTTONS_WIDTH, BUTTONS_HEIGHT, 0, 0, BUTTONS_HEIGHT+BUTTONS_OFFSET, PICKUP_BOOST_EFFECT_BUTTON_TEXTURE,BUTTONS_WIDTH,BUTTONS_TOTAL_HEIGHT,
 				e -> {
-					ModMessages.sendToServer(new ButtonsBGamesInteractPacket(3,2));
+					ModMessages.sendToServer(new ButtonsBGamesInteractC2SPacket(3,2));
 				},
 				new Button.OnTooltip(){
 					@Override
