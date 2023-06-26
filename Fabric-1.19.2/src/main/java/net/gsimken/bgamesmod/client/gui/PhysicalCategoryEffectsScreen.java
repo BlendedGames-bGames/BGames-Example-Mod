@@ -148,7 +148,10 @@ public class PhysicalCategoryEffectsScreen extends HandledScreen<PhysicalCategor
 		this.client.keyboard.setRepeatEvents(true);
 		this.addDrawableChild(new TexturedButtonWidget(this.x + 5, this.y + 5, 20, 18, 0, 0, 19,BACK_BUTTON_TEXTURE,20,37,
 				e ->{
-						ClientPlayNetworking.send(ModMessages.BUTTON_OPEN_SCREEN, (PacketByteBuf) PacketByteBufs.create().writeInt(0));
+					PacketByteBuf buf = PacketByteBufs.create();
+					buf.writeInt(0);
+					ClientPlayNetworking.send(ModMessages.BUTTON_OPEN_SCREEN,  buf);
+
 					}
 		));
 
@@ -239,8 +242,10 @@ public class PhysicalCategoryEffectsScreen extends HandledScreen<PhysicalCategor
 
 		hasteButton = new BGamesButton(x, y, BUTTONS_WIDTH, BUTTONS_HEIGHT, 0, 0, BUTTONS_HEIGHT+BUTTONS_OFFSET, HASTE_EFFECT_BUTTON_TEXTURE,BUTTONS_WIDTH,BUTTONS_TOTAL_HEIGHT,
 				e -> {
-					ClientPlayNetworking.send(ModMessages.BUTTON_BGAMES_INTERACT, (PacketByteBuf) PacketByteBufs.create().writeInt(1).writeInt(0));
-
+					PacketByteBuf buf = PacketByteBufs.create();
+					buf.writeInt(1);
+					buf.writeInt(0);
+					ClientPlayNetworking.send(ModMessages.BUTTON_BGAMES_INTERACT,  buf);
 				},
 				new ButtonWidget.TooltipSupplier(){
 					@Override
@@ -264,10 +269,10 @@ public class PhysicalCategoryEffectsScreen extends HandledScreen<PhysicalCategor
 
 		jumpBoostButton = new BGamesButton(x, y, BUTTONS_WIDTH, BUTTONS_HEIGHT, 0, 0, BUTTONS_HEIGHT+BUTTONS_OFFSET, JUMP_BOOST_EFFECT_BUTTON_TEXTURE,BUTTONS_WIDTH,BUTTONS_TOTAL_HEIGHT,
 				e -> {
-					ClientPlayNetworking.send(ModMessages.BUTTON_BGAMES_INTERACT,
-							(PacketByteBuf) PacketByteBufs.create().
-									writeInt(1).
-									writeInt(1));
+					PacketByteBuf buf = PacketByteBufs.create();
+					buf.writeInt(1);
+					buf.writeInt(1);
+					ClientPlayNetworking.send(ModMessages.BUTTON_BGAMES_INTERACT,  buf);
 
 
 
@@ -294,11 +299,10 @@ public class PhysicalCategoryEffectsScreen extends HandledScreen<PhysicalCategor
 
 		speedButton = new BGamesButton(x, y, BUTTONS_WIDTH, BUTTONS_HEIGHT, 0, 0, BUTTONS_HEIGHT+BUTTONS_OFFSET, SPEED_EFFECT_BUTTON_TEXTURE,BUTTONS_WIDTH,BUTTONS_TOTAL_HEIGHT,
 				e -> {
-					ClientPlayNetworking.send(ModMessages.BUTTON_BGAMES_INTERACT,
-							(PacketByteBuf) PacketByteBufs.create().
-									writeInt(1).
-									writeInt(2));
-
+					PacketByteBuf buf = PacketByteBufs.create();
+					buf.writeInt(1);
+					buf.writeInt(2);
+					ClientPlayNetworking.send(ModMessages.BUTTON_BGAMES_INTERACT,  buf);
 				},
 				new ButtonWidget.TooltipSupplier(){
 					@Override
@@ -321,10 +325,10 @@ public class PhysicalCategoryEffectsScreen extends HandledScreen<PhysicalCategor
 
 		strengthButton = new BGamesButton(x, y, BUTTONS_WIDTH, BUTTONS_HEIGHT, 0, 0, BUTTONS_HEIGHT+BUTTONS_OFFSET, STRENGTH_EFFECT_BUTTON_TEXTURE,BUTTONS_WIDTH,BUTTONS_TOTAL_HEIGHT,
 				e -> {
-					ClientPlayNetworking.send(ModMessages.BUTTON_BGAMES_INTERACT,
-							(PacketByteBuf) PacketByteBufs.create().
-									writeInt(1).
-									writeInt(3));
+					PacketByteBuf buf = PacketByteBufs.create();
+					buf.writeInt(1);
+					buf.writeInt(3);
+					ClientPlayNetworking.send(ModMessages.BUTTON_BGAMES_INTERACT,  buf);
 				},
 				new ButtonWidget.TooltipSupplier(){
 					@Override
@@ -347,10 +351,10 @@ public class PhysicalCategoryEffectsScreen extends HandledScreen<PhysicalCategor
 
 		regenerationButton = new BGamesButton(x, y, BUTTONS_WIDTH, BUTTONS_HEIGHT, 0, 0, BUTTONS_HEIGHT+BUTTONS_OFFSET, REGENERATION_EFFECT_BUTTON_TEXTURE,BUTTONS_WIDTH,BUTTONS_TOTAL_HEIGHT,
 				e -> {
-					ClientPlayNetworking.send(ModMessages.BUTTON_BGAMES_INTERACT,
-							(PacketByteBuf) PacketByteBufs.create().
-									writeInt(1).
-									writeInt(4));
+					PacketByteBuf buf = PacketByteBufs.create();
+					buf.writeInt(1);
+					buf.writeInt(4);
+					ClientPlayNetworking.send(ModMessages.BUTTON_BGAMES_INTERACT,  buf);
 				},
 				new ButtonWidget.TooltipSupplier(){
 					@Override
@@ -387,10 +391,10 @@ public class PhysicalCategoryEffectsScreen extends HandledScreen<PhysicalCategor
 
 		absortionButton = new BGamesButton(x, y, BUTTONS_WIDTH, BUTTONS_HEIGHT, 0, 0, BUTTONS_HEIGHT+BUTTONS_OFFSET, ABSORTION_EFFECT_BUTTON_TEXTURE,BUTTONS_WIDTH,BUTTONS_TOTAL_HEIGHT,
 				e -> {
-					ClientPlayNetworking.send(ModMessages.BUTTON_BGAMES_INTERACT,
-							(PacketByteBuf) PacketByteBufs.create().
-									writeInt(1).
-									writeInt(5));
+					PacketByteBuf buf = PacketByteBufs.create();
+					buf.writeInt(1);
+					buf.writeInt(5);
+					ClientPlayNetworking.send(ModMessages.BUTTON_BGAMES_INTERACT,  buf);
 				},
 				new ButtonWidget.TooltipSupplier(){
 					@Override
@@ -439,10 +443,10 @@ public class PhysicalCategoryEffectsScreen extends HandledScreen<PhysicalCategor
 		x = this.screenHelper.elementOffset(BUTTONS_WIDTH,1,2);
 		healthBoostButton = new BGamesButton(x, y, BUTTONS_WIDTH, BUTTONS_HEIGHT, 0, 0, BUTTONS_HEIGHT+BUTTONS_OFFSET, HEALTH_BOOST_EFFECT_BUTTON_TEXTURE,BUTTONS_WIDTH,BUTTONS_TOTAL_HEIGHT,
 				e -> {
-					ClientPlayNetworking.send(ModMessages.BUTTON_BGAMES_INTERACT,
-							(PacketByteBuf) PacketByteBufs.create().
-									writeInt(1).
-									writeInt(7));
+					PacketByteBuf buf = PacketByteBufs.create();
+					buf.writeInt(1);
+					buf.writeInt(7);
+					ClientPlayNetworking.send(ModMessages.BUTTON_BGAMES_INTERACT,  buf);
 				},
 				new ButtonWidget.TooltipSupplier(){
 					@Override
@@ -464,10 +468,10 @@ public class PhysicalCategoryEffectsScreen extends HandledScreen<PhysicalCategor
 		x = this.screenHelper.elementOffset(BUTTONS_WIDTH,1,3);
 		nightVisionButton = new BGamesButton(x, y, BUTTONS_WIDTH, BUTTONS_HEIGHT, 0, 0, BUTTONS_HEIGHT+BUTTONS_OFFSET, NIGHT_VISION_EFFECT_BUTTON_TEXTURE,BUTTONS_WIDTH,BUTTONS_TOTAL_HEIGHT,
 				e -> {
-					ClientPlayNetworking.send(ModMessages.BUTTON_BGAMES_INTERACT,
-							(PacketByteBuf) PacketByteBufs.create().
-									writeInt(1).
-									writeInt(8));
+					PacketByteBuf buf = PacketByteBufs.create();
+					buf.writeInt(1);
+					buf.writeInt(8);
+					ClientPlayNetworking.send(ModMessages.BUTTON_BGAMES_INTERACT,  buf);
 				},
 				new ButtonWidget.TooltipSupplier(){
 					@Override
@@ -489,10 +493,10 @@ public class PhysicalCategoryEffectsScreen extends HandledScreen<PhysicalCategor
 		x = this.screenHelper.elementOffset(BUTTONS_WIDTH,1,4);
 		resistanceButton = new BGamesButton(x, y, BUTTONS_WIDTH, BUTTONS_HEIGHT, 0, 0, BUTTONS_HEIGHT+BUTTONS_OFFSET, RESISTANCE_EFFECT_BUTTON_TEXTURE,BUTTONS_WIDTH,BUTTONS_TOTAL_HEIGHT,
 				e -> {
-					ClientPlayNetworking.send(ModMessages.BUTTON_BGAMES_INTERACT,
-							(PacketByteBuf) PacketByteBufs.create().
-									writeInt(1).
-									writeInt(9));
+					PacketByteBuf buf = PacketByteBufs.create();
+					buf.writeInt(1);
+					buf.writeInt(9);
+					ClientPlayNetworking.send(ModMessages.BUTTON_BGAMES_INTERACT,  buf);
 				},
 				new ButtonWidget.TooltipSupplier(){
 					@Override

@@ -22,11 +22,14 @@ public class ButtonOpenScreenC2SPacket {
                                PacketByteBuf buf,
                                PacketSender responseSender) {
         int screenId = buf.readInt();
+
         if(BGamesLibraryTools.isPlayerLogged(player)){
-            player.closeHandledScreen();
             switch (screenId){
                 case 0:
+
                     player.openHandledScreen(new ChooseCategoriesTrigger());
+
+
                     break;
                 case 1:
                     player.openHandledScreen(new PhysicalCategoryTrigger());

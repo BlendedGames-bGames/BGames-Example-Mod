@@ -97,20 +97,27 @@ public class ChooseCategoriesScreen extends HandledScreen<ChooseCategoriesMenu> 
 		int y = this.y + BUTTON_HEIGHT*2;
 		physicalButton = new TexturedButtonWidget(xCenter-BUTTON_WIDTH/2, y, 20, 18, 0, 0, 19,PHYSICAL_BUTTON_TEXTURE,20,37,
 				e -> {
-					ClientPlayNetworking.send(ModMessages.BUTTON_OPEN_SCREEN, (PacketByteBuf) PacketByteBufs.create().writeInt(1));
+					PacketByteBuf buf = PacketByteBufs.create();
+					buf.writeInt(1);
+					ClientPlayNetworking.send(ModMessages.BUTTON_OPEN_SCREEN,  buf);
+
 
 				}
 		);
 		socialButton = new TexturedButtonWidget(xCenter-3*BUTTON_WIDTH-BUTTON_WIDTH/2, y, 20, 18, 0, 0, 19, SOCIAL_BUTTON_TEXTURE,20,37,
 				e -> {
-					ClientPlayNetworking.send(ModMessages.BUTTON_OPEN_SCREEN, (PacketByteBuf) PacketByteBufs.create().writeInt(3));
+					PacketByteBuf buf = PacketByteBufs.create();
+					buf.writeInt(2);
+					ClientPlayNetworking.send(ModMessages.BUTTON_OPEN_SCREEN,  buf);
 
 				}
 		);
 
 		cognitiveButton = new TexturedButtonWidget(xCenter+3*BUTTON_WIDTH-BUTTON_WIDTH/2, y, 20, 18, 0, 0, 19, COGNITIVE_BUTTON_TEXTURE,20,37,
 				e -> {
-					ClientPlayNetworking.send(ModMessages.BUTTON_OPEN_SCREEN, (PacketByteBuf) PacketByteBufs.create().writeInt(2));
+					PacketByteBuf buf = PacketByteBufs.create();
+					buf.writeInt(3);
+					ClientPlayNetworking.send(ModMessages.BUTTON_OPEN_SCREEN,  buf);
 
 				}
 		);

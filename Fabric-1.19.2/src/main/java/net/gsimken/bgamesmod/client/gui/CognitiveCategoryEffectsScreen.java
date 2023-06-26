@@ -129,7 +129,9 @@ public class CognitiveCategoryEffectsScreen extends HandledScreen<CognitiveCateg
 		this.client.keyboard.setRepeatEvents(true);
 		this.addDrawableChild(new TexturedButtonWidget(this.x + 5, this.y + 5, 20, 18, 0, 0, 19,BACK_BUTTON_TEXTURE,20,37,
 				e ->{
-					ClientPlayNetworking.send(ModMessages.BUTTON_OPEN_SCREEN, (PacketByteBuf) PacketByteBufs.create().writeInt(0));
+					PacketByteBuf buf = PacketByteBufs.create();
+					buf.writeInt(0);
+					ClientPlayNetworking.send(ModMessages.BUTTON_OPEN_SCREEN,  buf);
 
 
 				}
@@ -164,8 +166,10 @@ public class CognitiveCategoryEffectsScreen extends HandledScreen<CognitiveCateg
 		experienceButton = new BGamesButton(x, y, BUTTONS_WIDTH, BUTTONS_HEIGHT, 0, 0, BUTTONS_HEIGHT+BUTTONS_OFFSET, EXPERIENCE_POINT_BUTTON_TEXTURE,BUTTONS_WIDTH,BUTTONS_TOTAL_HEIGHT,
 				e -> {
 					experienceButton.setCooldown();
-					ClientPlayNetworking.send(ModMessages.BUTTON_BGAMES_INTERACT, (PacketByteBuf) PacketByteBufs.create().writeInt(3).writeInt(0));
-
+					PacketByteBuf buf = PacketByteBufs.create();
+					buf.writeInt(3);
+					buf.writeInt(0);
+					ClientPlayNetworking.send(ModMessages.BUTTON_BGAMES_INTERACT,  buf);
 				},
 				new ButtonWidget.TooltipSupplier(){
 					@Override
@@ -185,8 +189,10 @@ public class CognitiveCategoryEffectsScreen extends HandledScreen<CognitiveCateg
 
 		reachButton = new BGamesButton(x, y, BUTTONS_WIDTH, BUTTONS_HEIGHT, 0, 0, BUTTONS_HEIGHT+BUTTONS_OFFSET, REACH_BOOST_EFFECT_BUTTON_TEXTURE,BUTTONS_WIDTH,BUTTONS_TOTAL_HEIGHT,
 				e -> {
-					ClientPlayNetworking.send(ModMessages.BUTTON_BGAMES_INTERACT, (PacketByteBuf) PacketByteBufs.create().writeInt(3).writeInt(1));
-
+					PacketByteBuf buf = PacketByteBufs.create();
+					buf.writeInt(3);
+					buf.writeInt(1);
+					ClientPlayNetworking.send(ModMessages.BUTTON_BGAMES_INTERACT,  buf);
 				},
 				new ButtonWidget.TooltipSupplier(){
 					@Override
@@ -207,7 +213,10 @@ public class CognitiveCategoryEffectsScreen extends HandledScreen<CognitiveCateg
 		x = this.screenHelper.elementOffset(BUTTONS_WIDTH,0,2);
 		pickupButton = new BGamesButton(x, y, BUTTONS_WIDTH, BUTTONS_HEIGHT, 0, 0, BUTTONS_HEIGHT+BUTTONS_OFFSET, PICKUP_BOOST_EFFECT_BUTTON_TEXTURE,BUTTONS_WIDTH,BUTTONS_TOTAL_HEIGHT,
 				e -> {
-					ClientPlayNetworking.send(ModMessages.BUTTON_BGAMES_INTERACT, (PacketByteBuf) PacketByteBufs.create().writeInt(3).writeInt(2));
+					PacketByteBuf buf = PacketByteBufs.create();
+					buf.writeInt(3);
+					buf.writeInt(2);
+					ClientPlayNetworking.send(ModMessages.BUTTON_BGAMES_INTERACT,  buf);
 
 				},
 				new ButtonWidget.TooltipSupplier(){

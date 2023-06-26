@@ -17,6 +17,9 @@
 	"entrypoints": {
 		"main": [
 			"net.gsimken.bgamesmod.BgamesMod"
+		],
+		"client": [
+			"net.gsimken.bgamesmod.BgamesModClient"
 		]
 	},
 	"mixins": [

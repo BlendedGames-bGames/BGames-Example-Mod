@@ -43,7 +43,7 @@ public class ScreenHelper {
     }
 
     public void addRow(int elementsNewRow ){
-        List newRow = new ArrayList<>();
+        List<Integer> newRow = new ArrayList<>();
         int position;
         int spacing = (this.backgroundWidth/(elementsNewRow+1));
         for(int i=0;i<elementsNewRow;i++){

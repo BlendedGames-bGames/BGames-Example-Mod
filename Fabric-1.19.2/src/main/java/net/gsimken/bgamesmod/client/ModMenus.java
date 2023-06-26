@@ -23,7 +23,12 @@ public class ModMenus {
     public static ScreenHandlerType<SocialCategoryMenu> SOCIAL_CATEGORY  ;
 
     public static void registerMenus() {
-        CHOOSE_CATEGORY = Registry.register(Registry.SCREEN_HANDLER,new Identifier(BgamesMod.MOD_ID,"bgamesmod_choose_category"),new ExtendedScreenHandlerType<>(ChooseCategoriesMenu::new));
+        CHOOSE_CATEGORY = Registry.register(Registry.SCREEN_HANDLER,
+                new Identifier(
+                        BgamesMod.MOD_ID,
+                        "bgamesmod_choose_category"
+                ),
+                new ExtendedScreenHandlerType<>(ChooseCategoriesMenu::new));
         PHYSICAL_CATEGORY = Registry.register(Registry.SCREEN_HANDLER,new Identifier(BgamesMod.MOD_ID,"bgamesmod_physical_category"),new ExtendedScreenHandlerType<>(PhysicalCategoryMenu::new));
         COGNITIVE_CATEGORY = Registry.register(Registry.SCREEN_HANDLER,new Identifier(BgamesMod.MOD_ID,"bgamesmod_cognitive_category"),new ExtendedScreenHandlerType<>(CognitiveCategoryMenu::new));
         SOCIAL_CATEGORY = Registry.register(Registry.SCREEN_HANDLER,new Identifier(BgamesMod.MOD_ID,"bgamesmod_social_category"),new ExtendedScreenHandlerType<>(SocialCategoryMenu::new));

@@ -22,8 +22,8 @@ public class MixinInventoryScreen extends Screen {
         super(text_1);
     }
 
-    private TexturedButtonWidget bGamesButton;
-    private static final Identifier BGAMES_BUTTON_LOCATION=new Identifier("bgamesmod:textures/screens/placeholder.png");
+
+    private static final Identifier BGAMES_BUTTON_MOD_TEXTURE=new Identifier("bgamesmod:textures/screens/placeholder.png");
 
 
     @Inject(method = "init", at = @At("TAIL"))
@@ -35,10 +35,12 @@ public class MixinInventoryScreen extends Screen {
             int posY = this.height / 2;
             int buttonPosX=  posX + 44; //recipeBook.updateScreenPosition(posX + 64,20);
             int buttonPosY =posY + -101;
-            TexturedButtonWidget bGamesLogo= new TexturedButtonWidget(buttonPosX,buttonPosY , 20, 18, 0, 0, 19,  BGAMES_BUTTON_LOCATION,20,37,
+            TexturedButtonWidget bGamesLogo= new TexturedButtonWidget(buttonPosX,buttonPosY , 20, 18, 0, 0, 19,  BGAMES_BUTTON_MOD_TEXTURE,20,37,
 
                     e -> {
-                        ClientPlayNetworking.send(ModMessages.BUTTON_OPEN_SCREEN, (PacketByteBuf) PacketByteBufs.create().writeInt(0));
+                        PacketByteBuf buf = PacketByteBufs.create();
+                        buf.writeInt(0);
+                        ClientPlayNetworking.send(ModMessages.BUTTON_OPEN_SCREEN,  buf);
                     });
 
             this.addDrawableChild(bGamesLogo);

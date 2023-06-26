@@ -21,13 +21,13 @@ public class ModEffects {
                 new ReachBoostEffect(StatusEffectCategory.BENEFICIAL, 3129339).addAttributeModifier(ReachEntityAttributes.REACH, "F934554A-097F-11EE-BE56-0242AC120002", 4.0, EntityAttributeModifier.Operation.ADDITION)
         );
         PICKUP_BOOST = Registry.register(Registry.STATUS_EFFECT, new Identifier(BgamesMod.MOD_ID, "pickup_boost"),
-                new ReachBoostEffect(StatusEffectCategory.BENEFICIAL, 4653215)
+                new PickUpRangeBoostEffect(StatusEffectCategory.BENEFICIAL, 4653215)
         );
         AREA_REGENERATION = Registry.register(Registry.STATUS_EFFECT, new Identifier(BgamesMod.MOD_ID, "area_regeneration"),
-                new ReachBoostEffect(StatusEffectCategory.BENEFICIAL, 16711680)
+                new AreaRegenerationEffect(StatusEffectCategory.BENEFICIAL, 16711680)
         );
         AREA_STRENGTH = Registry.register(Registry.STATUS_EFFECT, new Identifier(BgamesMod.MOD_ID, "area_strength"),
-                new ReachBoostEffect(StatusEffectCategory.BENEFICIAL, 16711680)
+                new AreaStrengthEffect(StatusEffectCategory.BENEFICIAL, 16711680)
         );
     }
 

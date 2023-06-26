@@ -2,6 +2,7 @@ package net.gsimken.bgamesmod;
 
 import net.fabricmc.api.ModInitializer;
 
+import net.gsimken.bgamesmod.client.ModMenus;
 import net.gsimken.bgamesmod.effects.ModEffects;
 import net.gsimken.bgamesmod.networking.ModMessages;
 import net.gsimken.bgamesmod.potion.ModPotions;
@@ -20,7 +21,7 @@ public class BgamesMod implements ModInitializer {
 		// However, some things (like resources) may still be uninitialized.
 		// Proceed with mild caution.
 		ModMessages.registerC2SPackets();
-
+		ModMenus.registerMenus();
 		ModEffects.register();
 		ModPotions.register();
 
