@@ -2,6 +2,8 @@ package net.gsimken.bgamesmod.client.gui;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
+import net.gsimken.bgameslibrary.BgamesLibrary;
+import net.gsimken.bgameslibrary.bgames.BGamesLibraryTools;
 import net.gsimken.bgameslibrary.bgames.ClientBGamesPlayerData;
 import net.gsimken.bgamesmod.client.menus.ChooseCategoriesMenu;
 import net.gsimken.bgamesmod.client.menus.PhysicalCategoryMenu;
@@ -106,7 +108,7 @@ public class PhysicalCategoryEffectsScreen extends AbstractContainerScreen<Physi
 	protected void renderLabels(PoseStack poseStack, int mouseX, int mouseY) {
 		Component consumePoints= Component.translatable("gui.bgamesmod.choose_category.label_consume_points");
 		Component physicalLabel=Component.translatable("gui.bgamesmod.choose_category.label_physical");
-		Component points  = ScreenHelper.getPoints(ClientBGamesPlayerData.getPlayerPhysicalPoints());
+		Component points  = ScreenHelper.getPoints(BGamesLibraryTools.getPoints(BgamesLibrary.bgames_physical_name,player));
 
 
 		this.font.draw(poseStack,physicalLabel , this.screenHelper.tittleOffset(physicalLabel), 5, -12829636);
