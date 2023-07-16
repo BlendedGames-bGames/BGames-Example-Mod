@@ -22,5 +22,15 @@
   "item.minecraft.potion.effect.reach_boost_potion": "Reach Boost Potion",
   "item.minecraft.splash_potion.effect.pickup_boost_potion": "Splash Potion of Pick Up Boost",
   "item.minecraft.splash_potion.effect.reach_boost_potion": "Splash Potion of Reach Boost",
-  "login.bgameslibrary.not_logged": "Not logged in bGames, please use /login command before play"
+  "login.bgameslibrary.not_logged": "Not logged in bGames, please use /login command before play",
+  "potion.potency.10": "X",
+  "potion.potency.15": "XV",
+  "potion.potency.20": "XX",
+  "potion.potency.3": "III",
+  "potion.potency.4": "IV",
+  "potion.potency.5": "V",
+  "potion.potency.6": "VI",
+  "potion.potency.7": "VII",
+  "potion.potency.8": "VII",
+  "potion.potency.9": "IX"
 }

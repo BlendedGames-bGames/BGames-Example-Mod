@@ -12,7 +12,7 @@
   "gui.bgamesmod.cognitive.experience_button_description": "Give the exp for 2 enchantment",
   "gui.bgamesmod.cognitive.experience_button_details": "If player level < 33, set the player level to 33, else give to the player 6 levels",
   "gui.bgamesmod.cognitive.experience_name": "Experience",
-  "gui.bgamesmod.cognitive.pickup_boost_description": "Increase the range to pick up item in 2 blocks per lvl",
+  "gui.bgamesmod.cognitive.pickup_boost_description": "Increase the range to pick up item in 1 blocks per lvl",
   "gui.bgamesmod.cognitive.reach_boost_description": "Increase the range to interact in 2 blocks per lvl",
   "gui.bgamesmod.social.area_regeneration_description": "Apply Regeneration II for players, pets or horses",
   "gui.bgamesmod.social.area_strength_description": "Apply Strength III to nearby players, pets or horses ",

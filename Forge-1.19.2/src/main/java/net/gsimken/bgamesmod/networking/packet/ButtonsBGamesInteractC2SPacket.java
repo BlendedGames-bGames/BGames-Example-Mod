@@ -20,7 +20,7 @@ public class ButtonsBGamesInteractC2SPacket {
     -------SOCIAL : 0
     ------PHYSICAL: 1
     * EFFECT LVL DURATION : ID
-    * Haste 3 10MIN : 0
+    * Haste 8 10MIN : 0
     * Jump Boost 2 10 MIN : 1
     * Speed 1 20 MIN : 2
     * Strength 4 5 MIN : 3
