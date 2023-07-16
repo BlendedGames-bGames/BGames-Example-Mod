@@ -3,6 +3,8 @@ package net.gsimken.bgamesmod.client.gui;
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
+import net.gsimken.bgameslibrary.BgamesLibrary;
+import net.gsimken.bgameslibrary.bgames.BGamesLibraryTools;
 import net.gsimken.bgameslibrary.bgames.BGamesPlayerData;
 import net.gsimken.bgameslibrary.utils.IBGamesDataSaver;
 import net.gsimken.bgamesmod.client.menus.ChooseCategoriesMenu;
@@ -107,7 +109,8 @@ public class PhysicalCategoryEffectsScreen extends HandledScreen<PhysicalCategor
 	protected void drawForeground(MatrixStack poseStack, int mouseX, int mouseY) {
 		Text consumePoints= Text.translatable("gui.bgamesmod.choose_category.label_consume_points");
 		Text physicalLabel=Text.translatable("gui.bgamesmod.choose_category.label_physical");
-		Text points  = ScreenHelper.getPoints(BGamesPlayerData.getPhysicalPoints((IBGamesDataSaver) player));
+		Text points  = ScreenHelper.getPoints(BGamesLibraryTools.getPoints(BgamesLibrary.bgames_physical_name,player));
+
 
 
 

@@ -3,6 +3,8 @@ package net.gsimken.bgamesmod.client.gui;
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
+import net.gsimken.bgameslibrary.BgamesLibrary;
+import net.gsimken.bgameslibrary.bgames.BGamesLibraryTools;
 import net.gsimken.bgameslibrary.bgames.BGamesPlayerData;
 import net.gsimken.bgameslibrary.utils.IBGamesDataSaver;
 import net.gsimken.bgamesmod.client.menus.ChooseCategoriesMenu;
@@ -98,7 +100,8 @@ public class CognitiveCategoryEffectsScreen extends HandledScreen<CognitiveCateg
 		int x;
 		Text consumePoints= Text.translatable("gui.bgamesmod.choose_category.label_consume_points");
 		Text cognitiveLabel=Text.translatable("gui.bgamesmod.choose_category.label_cognitive");
-		Text points  = ScreenHelper.getPoints(BGamesPlayerData.getCognitivePoints((IBGamesDataSaver) player));
+		Text points  = ScreenHelper.getPoints(BGamesLibraryTools.getPoints(BgamesLibrary.bgames_cognitive_name,player));
+
 
 
 		this.textRenderer.draw(poseStack,cognitiveLabel , this.screenHelper.tittleOffset(cognitiveLabel), 5, -12829636);

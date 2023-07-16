@@ -2,6 +2,8 @@ package net.gsimken.bgamesmod.client.gui;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
+import net.gsimken.bgameslibrary.BgamesLibrary;
+import net.gsimken.bgameslibrary.bgames.BGamesLibraryTools;
 import net.gsimken.bgameslibrary.bgames.ClientBGamesPlayerData;
 import net.gsimken.bgamesmod.client.menus.ChooseCategoriesMenu;
 import net.gsimken.bgamesmod.client.menus.SocialCategoryMenu;
@@ -96,7 +98,8 @@ public class SocialCategoryEffectsScreen extends AbstractContainerScreen<SocialC
 		int x;
 		Component consumePoints= Component.translatable("gui.bgamesmod.choose_category.label_consume_points");
 		Component socialLabel=Component.translatable("gui.bgamesmod.choose_category.label_social");
-		Component points  = ScreenHelper.getPoints(ClientBGamesPlayerData.getPlayerSocialPoints());
+		Component points  = ScreenHelper.getPoints(BGamesLibraryTools.getPoints(BgamesLibrary.bgames_social_name,player));
+
 
 
 		this.font.draw(poseStack,socialLabel , this.screenHelper.tittleOffset(socialLabel), 5, -12829636);
