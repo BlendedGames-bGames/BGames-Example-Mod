@@ -420,10 +420,10 @@ public class PhysicalCategoryEffectsScreen extends HandledScreen<PhysicalCategor
 		x = this.screenHelper.elementOffset(BUTTONS_WIDTH,1,1);
 		fireResistanceButton = new BGamesButton(x, y, BUTTONS_WIDTH, BUTTONS_HEIGHT, 0, 0, BUTTONS_HEIGHT+BUTTONS_OFFSET, FIRE_RESISTANCE_EFFECT_BUTTON_TEXTURE,BUTTONS_WIDTH,BUTTONS_TOTAL_HEIGHT,
 				e -> {
-					ClientPlayNetworking.send(ModMessages.BUTTON_BGAMES_INTERACT,
-							(PacketByteBuf) PacketByteBufs.create().
-									writeInt(1).
-									writeInt(6));
+					PacketByteBuf buf = PacketByteBufs.create();
+					buf.writeInt(1);
+					buf.writeInt(6);
+					ClientPlayNetworking.send(ModMessages.BUTTON_BGAMES_INTERACT,  buf);
 				},
 				new ButtonWidget.TooltipSupplier(){
 					@Override
