@@ -6,6 +6,7 @@ import net.gsimken.bgamesmod.client.ModMenus;
 import net.gsimken.bgamesmod.effects.ModEffects;
 import net.gsimken.bgamesmod.networking.ModMessages;
 import net.gsimken.bgamesmod.potion.ModPotions;
+import net.gsimken.bgamesmod.test_utils.CSVwriter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -17,6 +18,7 @@ public class BgamesMod implements ModInitializer {
 	public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
 	@Override
 	public void onInitialize() {
+		long startTime = System.currentTimeMillis();
 		// This code runs as soon as Minecraft is in a mod-load-ready state.
 		// However, some things (like resources) may still be uninitialized.
 		// Proceed with mild caution.
@@ -26,5 +28,8 @@ public class BgamesMod implements ModInitializer {
 		ModPotions.register();
 
 		LOGGER.info("Hello Fabric world!");
+		long endTime = System.currentTimeMillis();
+		long elapsedTime = endTime - startTime;
+		CSVwriter.updateCSV("ISMFa", Long.toString(elapsedTime));
 	}
 }

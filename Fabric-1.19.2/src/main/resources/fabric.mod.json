@@ -1,7 +1,7 @@
 {
 	"schemaVersion": 1,
 	"id": "bgamesmod",
-	"version": "${version}",
+	"version": "1.0.0-1.19.2",
 	"name": "bgamesmod",
 	"description": "This is an example description! Tell everyone what your mod is about!",
 	"authors": [

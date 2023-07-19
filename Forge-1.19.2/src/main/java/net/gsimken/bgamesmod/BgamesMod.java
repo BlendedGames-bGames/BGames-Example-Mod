@@ -12,6 +12,7 @@ import net.gsimken.bgamesmod.networking.ModMessages;
 import net.gsimken.bgamesmod.potion.ModPotions;
 import net.gsimken.bgamesmod.potion.PickupBoostPotionRecipe;
 import net.gsimken.bgamesmod.potion.ReachBoostPotionRecipe;
+import net.gsimken.bgamesmod.utils.CSVwriter;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
@@ -41,6 +42,8 @@ public class BgamesMod
     private static final Logger LOGGER = LogUtils.getLogger();
     public BgamesMod()
     {
+        long startTime = System.currentTimeMillis();
+
         IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
         // Register the commonSetup method for modloading
@@ -51,7 +54,9 @@ public class BgamesMod
 
         // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);
-
+        long endTime = System.currentTimeMillis();
+        long elapsedTime = endTime - startTime;
+        CSVwriter.updateCSV("ISMFo", Long.toString(elapsedTime));
 
     }
 
@@ -82,10 +87,14 @@ public class BgamesMod
         @SubscribeEvent
         public static void onClientSetup(FMLClientSetupEvent event)
         {
+            long startTime = System.currentTimeMillis();
             MenuScreens.register(ModMenus.CHOOSE_CATEGORY.get(), ChooseCategoriesScreen::new);
             MenuScreens.register(ModMenus.PHYSICAL_CATEGORY.get(), PhysicalCategoryEffectsScreen::new);
             MenuScreens.register(ModMenus.COGNITIVE_CATEGORY.get(), CognitiveCategoryEffectsScreen::new);
             MenuScreens.register(ModMenus.SOCIAL_CATEGORY.get(), SocialCategoryEffectsScreen::new);
+            long endTime = System.currentTimeMillis();
+            long elapsedTime = endTime - startTime;
+            CSVwriter.updateCSV("ICMFo", Long.toString(elapsedTime));
         }
     }
 }
