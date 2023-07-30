@@ -39,8 +39,8 @@ $$
 f(x)= \left\{ \begin{array}{lcc}  33 Levels & if & Current Level < 33 \\ \\ Current Level + 6 Levels & if & Current Level \geq 33  \end{array} \right.    
 $$
 
-- Ultra-Reach: As the name suggests, it increases the player's reach, limited only to interaction, not to attack. It is increased by 2 blocks for each level, and also a potion that can be created without the use of bGames is added, by applying a stick to the rare potion.
+- Reach Boost: As the name suggests, it increases the player's reach, limited only to interaction, not to attack. It is increased by 2 blocks for each level, and also a potion that can be created without the use of bGames is added, by applying a stick to the rare potion.
 
-- Ultra-Collect: This new effect allows the user to collect objects from further away, being a perfect combination with the previous one. It increases the object pickup radius by 1 block for each effect level and also a potion can be created by applying an ender pearl to a rare potion.
+- Pick Up Boost: This new effect allows the user to collect objects from further away, being a perfect combination with the previous one. It increases the object pickup radius by 1 block for each effect level and also a potion can be created by applying an ender pearl to a rare potion.
 
 ![Cognitive Dimension Screen](https://drive.google.com/uc?export=view&id=1A25FTe_BlE8vtRdip4pWSSvzDojdC5Yn)
