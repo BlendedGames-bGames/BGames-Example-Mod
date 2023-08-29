@@ -75,7 +75,10 @@ public class ScreenHelper {
      * @return a string "X points", with transalation
      * */
     public static Text getPoints(int points){
-        return Text.translatable("gui.bgameslibrary.display_attributes.points", Text.literal( String.valueOf(points)));
+        if(points == -1 || points == 1) {
+            return  Text.translatable("gui.bgamesmod.point");
+        }
+        return Text.translatable("gui.bgameslibrary.display_attributes.points", Text.literal(String.valueOf(-1 * points)));
     }
 
 }

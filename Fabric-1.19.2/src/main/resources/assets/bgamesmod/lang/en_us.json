@@ -14,6 +14,7 @@
   "gui.bgamesmod.cognitive.experience_name": "Experience",
   "gui.bgamesmod.cognitive.pickup_boost_description": "Increase the range to pick up item in 2 blocks per lvl",
   "gui.bgamesmod.cognitive.reach_boost_description": "Increase the range to interact in 2 blocks per lvl",
+  "gui.bgamesmod.point": "1 point",
   "gui.bgamesmod.social.area_regeneration_description": "Apply Regeneration II for players, pets or horses",
   "gui.bgamesmod.social.area_strength_description": "Apply Strength III to nearby players, pets or horses ",
   "item.minecraft.lingering_potion.effect.pickup_boost_potion": "Lingering Potion of Pick Up Boost",

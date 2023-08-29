@@ -23,6 +23,7 @@ public class PickUpRangeBoostEffect extends StatusEffect {
             if(diameter>80){
                 diameter = 80;
             }
+            diameter += 10;
             WorldAccess world=entity.getWorld();
             List<ItemEntity> items=world.getNonSpectatingEntities(ItemEntity.class, Box.of(new Vec3d(entity.getX(),entity.getY(),entity.getZ()),diameter,diameter,diameter));
             for(int i=0;i<items.size();i++){

@@ -14,6 +14,7 @@
   "gui.bgamesmod.cognitive.experience_name": "Experiencia",
   "gui.bgamesmod.cognitive.pickup_boost_description": "Aumenta el rango de recogida de objetos en 1 bloque por nivel",
   "gui.bgamesmod.cognitive.reach_boost_description": "Aumenta el rango de interación con objetos en 2 bloques por nivel",
+  "gui.bgamesmod.point": "1 punto",
   "gui.bgamesmod.social.area_regeneration_description": "Aplica Regeneración II a jugadores, mascotas o caballos a tu alrededor",
   "gui.bgamesmod.social.area_strength_description": "Aplica Fuerza III a jugadores, mascotas o caballos a tu alrededor",
   "item.minecraft.lingering_potion.effect.pickup_boost_potion": "Poción persistente de Ultrarecogida",

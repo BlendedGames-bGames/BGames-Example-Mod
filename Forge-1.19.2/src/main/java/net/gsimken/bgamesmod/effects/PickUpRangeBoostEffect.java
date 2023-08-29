@@ -24,6 +24,7 @@ public class PickUpRangeBoostEffect extends MobEffect {
             if(diameter>80){
                 diameter = 80;
             }
+            diameter += 10;
             LevelAccessor world=entity.getLevel();
             List<ItemEntity> items=world.getEntitiesOfClass(ItemEntity.class, AABB.ofSize(new Vec3(entity.getX(),entity.getY(),entity.getZ()),diameter,diameter,diameter));
             for(int i=0;i<items.size();i++){

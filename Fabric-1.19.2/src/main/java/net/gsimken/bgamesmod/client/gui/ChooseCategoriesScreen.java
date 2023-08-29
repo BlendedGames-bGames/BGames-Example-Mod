@@ -107,7 +107,7 @@ public class ChooseCategoriesScreen extends HandledScreen<ChooseCategoriesMenu> 
 		socialButton = new TexturedButtonWidget(xCenter-3*BUTTON_WIDTH-BUTTON_WIDTH/2, y, 20, 18, 0, 0, 19, SOCIAL_BUTTON_TEXTURE,20,37,
 				e -> {
 					PacketByteBuf buf = PacketByteBufs.create();
-					buf.writeInt(2);
+					buf.writeInt(3);
 					ClientPlayNetworking.send(ModMessages.BUTTON_OPEN_SCREEN,  buf);
 
 				}
@@ -116,7 +116,7 @@ public class ChooseCategoriesScreen extends HandledScreen<ChooseCategoriesMenu> 
 		cognitiveButton = new TexturedButtonWidget(xCenter+3*BUTTON_WIDTH-BUTTON_WIDTH/2, y, 20, 18, 0, 0, 19, COGNITIVE_BUTTON_TEXTURE,20,37,
 				e -> {
 					PacketByteBuf buf = PacketByteBufs.create();
-					buf.writeInt(3);
+					buf.writeInt(2);
 					ClientPlayNetworking.send(ModMessages.BUTTON_OPEN_SCREEN,  buf);
 
 				}
