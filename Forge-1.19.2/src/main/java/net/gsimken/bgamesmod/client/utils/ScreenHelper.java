@@ -76,6 +76,9 @@ public class ScreenHelper {
      * @return a string "X points", with transalation
      * */
     public static Component getPoints(int points){
+        if(points == -1 || points == 1) {
+            return  Component.translatable("gui.bgamesmod.point");
+        }
         return Component.translatable("gui.bgameslibrary.display_attributes.points", Component.literal( String.valueOf(points)));
     }
 

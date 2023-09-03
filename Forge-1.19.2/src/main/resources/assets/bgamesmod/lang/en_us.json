@@ -32,5 +32,6 @@
   "potion.potency.20": "XX",
   "item.minecraft.splash_potion.effect.pickup_boost_potion": "Splash Potion of Pick Up Boost",
   "item.minecraft.splash_potion.effect.reach_boost_potion": "Splash Potion of Reach Boost",
-  "login.bgameslibrary.not_logged": "Not logged in bGames, please use /login command before play"
+  "login.bgameslibrary.not_logged": "Not logged in bGames, please use /login command before play",
+  "gui.bgamesmod.point": "1 point"
 }

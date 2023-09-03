@@ -32,5 +32,6 @@
   "potion.potency.20": "XX",
   "item.minecraft.splash_potion.effect.pickup_boost_potion": "Poción arrojadiza de Ultrarecogida ",
   "item.minecraft.splash_potion.effect.reach_boost_potion": "Poción arrojadiza de Ultralcance",
-  "login.bgameslibrary.not_logged": "No has iniciado sesión, por favor usa /login antes de jugar"
+  "login.bgameslibrary.not_logged": "No has iniciado sesión, por favor usa /login antes de jugar",
+  "gui.bgamesmod.point": "1 punto"
 }
