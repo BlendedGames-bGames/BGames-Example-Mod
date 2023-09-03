@@ -16,7 +16,7 @@ import net.minecraftforge.fml.common.Mod;
 
 @Mod.EventBusSubscriber({Dist.CLIENT})
 public class OpenPowersBGamesButtonOverlay {
-	private static final ResourceLocation BGAMES_BUTTON_LOCATION=new ResourceLocation("bgamesmod:textures/screens/placeholder.png");
+	private static final ResourceLocation BGAMES_BUTTON_LOCATION=new ResourceLocation("bgamesmod:textures/screens/b_games_mod_logo.png");
 	//Button on Inventory
 	@SubscribeEvent(priority = EventPriority.NORMAL)
 	public static void inventoryEventHandler(ScreenEvent.Init.Post event) {

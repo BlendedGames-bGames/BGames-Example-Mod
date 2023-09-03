@@ -23,7 +23,7 @@ public class MixinInventoryScreen extends Screen {
     }
 
 
-    private static final Identifier BGAMES_BUTTON_MOD_TEXTURE=new Identifier("bgamesmod:textures/screens/placeholder.png");
+    private static final Identifier BGAMES_BUTTON_MOD_TEXTURE=new Identifier("bgamesmod:textures/screens/b_games_mod_logo.png");
 
 
     @Inject(method = "init", at = @At("TAIL"))
