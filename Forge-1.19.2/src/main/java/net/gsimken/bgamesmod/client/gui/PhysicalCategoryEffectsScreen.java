@@ -67,7 +67,7 @@ public class PhysicalCategoryEffectsScreen extends AbstractContainerScreen<Physi
 	public PhysicalCategoryEffectsScreen(PhysicalCategoryMenu container, Inventory inventory, Component text) {
 		super(container, inventory, text);
 		this.player = container.player;
-		this.imageWidth = 500;
+		this.imageWidth = 488;
 		this.imageHeight = 180;
 	}
 
@@ -117,7 +117,7 @@ public class PhysicalCategoryEffectsScreen extends AbstractContainerScreen<Physi
 		int x;
 		int y = (BUTTONS_HEIGHT*5/2) + 1;
 		Component effectValue = ScreenHelper.getPoints(-1);
-		Component[] effectNamesFirstRow= {MobEffects.DIG_SPEED.getDisplayName(),MobEffects.JUMP.getDisplayName(),MobEffects.MOVEMENT_SPEED.getDisplayName(),MobEffects.DAMAGE_BOOST.getDisplayName(),MobEffects.REGENERATION.getDisplayName()};
+		Component[] effectNamesFirstRow= {MobEffects.DIG_SPEED.getDisplayName(),MobEffects.JUMP.getDisplayName(),MobEffects.HEALTH_BOOST.getDisplayName(),MobEffects.DAMAGE_BOOST.getDisplayName(),MobEffects.REGENERATION.getDisplayName()};
 		for(int i=0; i<5;i++){
 			x = this.screenHelper.labelOffSet(effectNamesFirstRow[i],0,i);
 			this.font.draw(poseStack,effectNamesFirstRow[i],x, y, -12829636);
@@ -125,7 +125,7 @@ public class PhysicalCategoryEffectsScreen extends AbstractContainerScreen<Physi
 			this.font.draw(poseStack,effectValue,x, y+10, -12829636);
 		}
 		y+= BUTTONS_HEIGHT*5/2;
-		Component[] effectNamesSecondRow= {MobEffects.ABSORPTION.getDisplayName(),MobEffects.FIRE_RESISTANCE.getDisplayName(),MobEffects.HEALTH_BOOST.getDisplayName(),MobEffects.NIGHT_VISION.getDisplayName(),MobEffects.DAMAGE_RESISTANCE.getDisplayName()};
+		Component[] effectNamesSecondRow= {MobEffects.ABSORPTION.getDisplayName(),MobEffects.FIRE_RESISTANCE.getDisplayName(),MobEffects.MOVEMENT_SPEED.getDisplayName(),MobEffects.NIGHT_VISION.getDisplayName(),MobEffects.DAMAGE_RESISTANCE.getDisplayName()};
 		for(int i=0; i<5;i++){
 			x = this.screenHelper.labelOffSet(effectNamesSecondRow[i],0,i);
 			this.font.draw(poseStack,effectNamesSecondRow[i],x, y, -12829636);
@@ -285,17 +285,16 @@ public class PhysicalCategoryEffectsScreen extends AbstractContainerScreen<Physi
 		);
 
 		x = this.screenHelper.elementOffset(BUTTONS_WIDTH,0,2);
-
-		speedButton = new BGamesButton(x, y, BUTTONS_WIDTH, BUTTONS_HEIGHT, 0, 0, BUTTONS_HEIGHT+BUTTONS_OFFSET, SPEED_EFFECT_BUTTON_TEXTURE,BUTTONS_WIDTH,BUTTONS_TOTAL_HEIGHT,
+		healthBoostButton = new BGamesButton(x, y, BUTTONS_WIDTH, BUTTONS_HEIGHT, 0, 0, BUTTONS_HEIGHT+BUTTONS_OFFSET, HEALTH_BOOST_EFFECT_BUTTON_TEXTURE,BUTTONS_WIDTH,BUTTONS_TOTAL_HEIGHT,
 				e -> {
-					ModMessages.sendToServer(new ButtonsBGamesInteractC2SPacket(1,2));
+					ModMessages.sendToServer(new ButtonsBGamesInteractC2SPacket(1,7));
 				},
 				new Button.OnTooltip(){
 					@Override
 					public void onTooltip(Button buttonWidget, PoseStack matrices, int i, int j) {
-						MobEffect effect = MobEffects.MOVEMENT_SPEED;
-						String minutes= "20:00";
-						String amplifier = "I";
+						MobEffect effect = MobEffects.HEALTH_BOOST;
+						String minutes= "10:00";
+						String amplifier = "X";
 						String firstToolTip = effect.getDisplayName().getString()+ " "+amplifier;
 						String secondToolTip = Component.translatable("gui.minutes",minutes).getString();
 						Font font = Minecraft.getInstance().font;
@@ -307,6 +306,7 @@ public class PhysicalCategoryEffectsScreen extends AbstractContainerScreen<Physi
 					public void narrateTooltip(Consumer<Component> consumer) {Button.OnTooltip.super.narrateTooltip(consumer);}
 				}
 		);
+
 		x = this.screenHelper.elementOffset(BUTTONS_WIDTH,0,3);
 
 		strengthButton = new BGamesButton(x, y, BUTTONS_WIDTH, BUTTONS_HEIGHT, 0, 0, BUTTONS_HEIGHT+BUTTONS_OFFSET, STRENGTH_EFFECT_BUTTON_TEXTURE,BUTTONS_WIDTH,BUTTONS_TOTAL_HEIGHT,
@@ -356,12 +356,12 @@ public class PhysicalCategoryEffectsScreen extends AbstractContainerScreen<Physi
 
 		guistate.put("button:haste_button", hasteButton);
 		guistate.put("button:jump_boost_button", jumpBoostButton);
-		guistate.put("button:speed_button", speedButton);
+		guistate.put("button:health_boost_button", healthBoostButton);
 		guistate.put("button:strength_button", strengthButton);
 		guistate.put("button:regeneration_button", regenerationButton);
 		this.addRenderableWidget(hasteButton);
 		this.addRenderableWidget(jumpBoostButton);
-		this.addRenderableWidget(speedButton);
+		this.addRenderableWidget(healthBoostButton);
 		this.addRenderableWidget(strengthButton);
 		this.addRenderableWidget(regenerationButton);
 
@@ -415,16 +415,16 @@ public class PhysicalCategoryEffectsScreen extends AbstractContainerScreen<Physi
 		);
 
 		x = this.screenHelper.elementOffset(BUTTONS_WIDTH,1,2);
-		healthBoostButton = new BGamesButton(x, y, BUTTONS_WIDTH, BUTTONS_HEIGHT, 0, 0, BUTTONS_HEIGHT+BUTTONS_OFFSET, HEALTH_BOOST_EFFECT_BUTTON_TEXTURE,BUTTONS_WIDTH,BUTTONS_TOTAL_HEIGHT,
+		speedButton = new BGamesButton(x, y, BUTTONS_WIDTH, BUTTONS_HEIGHT, 0, 0, BUTTONS_HEIGHT+BUTTONS_OFFSET, SPEED_EFFECT_BUTTON_TEXTURE,BUTTONS_WIDTH,BUTTONS_TOTAL_HEIGHT,
 				e -> {
-					ModMessages.sendToServer(new ButtonsBGamesInteractC2SPacket(1,7));
+					ModMessages.sendToServer(new ButtonsBGamesInteractC2SPacket(1,2));
 				},
 				new Button.OnTooltip(){
 					@Override
 					public void onTooltip(Button buttonWidget, PoseStack matrices, int i, int j) {
-						MobEffect effect = MobEffects.HEALTH_BOOST;
-						String minutes= "10:00";
-						String amplifier = "X";
+						MobEffect effect = MobEffects.MOVEMENT_SPEED;
+						String minutes= "20:00";
+						String amplifier = "I";
 						String firstToolTip = effect.getDisplayName().getString()+ " "+amplifier;
 						String secondToolTip = Component.translatable("gui.minutes",minutes).getString();
 						Font font = Minecraft.getInstance().font;
@@ -436,6 +436,7 @@ public class PhysicalCategoryEffectsScreen extends AbstractContainerScreen<Physi
 					public void narrateTooltip(Consumer<Component> consumer) {Button.OnTooltip.super.narrateTooltip(consumer);}
 				}
 		);
+
 		x = this.screenHelper.elementOffset(BUTTONS_WIDTH,1,3);
 		nightVisionButton = new BGamesButton(x, y, BUTTONS_WIDTH, BUTTONS_HEIGHT, 0, 0, BUTTONS_HEIGHT+BUTTONS_OFFSET, NIGHT_VISION_EFFECT_BUTTON_TEXTURE,BUTTONS_WIDTH,BUTTONS_TOTAL_HEIGHT,
 				e -> {
@@ -483,12 +484,12 @@ public class PhysicalCategoryEffectsScreen extends AbstractContainerScreen<Physi
 
 		guistate.put("button:absortion_button", absortionButton);
 		guistate.put("button:fire_resistance_button", fireResistanceButton);
-		guistate.put("button:health_boost_button", healthBoostButton);
+		guistate.put("button:speed_button", speedButton);
 		guistate.put("button:night_vision_button", nightVisionButton);
 		guistate.put("button:resistance_button", resistanceButton);
 		this.addRenderableWidget(absortionButton);
 		this.addRenderableWidget(fireResistanceButton);
-		this.addRenderableWidget(healthBoostButton);
+		this.addRenderableWidget(speedButton);
 		this.addRenderableWidget(nightVisionButton);
 		this.addRenderableWidget(resistanceButton);
 

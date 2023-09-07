@@ -79,7 +79,7 @@ public class ScreenHelper {
         if(points == -1 || points == 1) {
             return  Component.translatable("gui.bgamesmod.point");
         }
-        return Component.translatable("gui.bgameslibrary.display_attributes.points", Component.literal( String.valueOf(points)));
+        return Component.translatable("gui.bgameslibrary.display_attributes.points", Component.literal(String.valueOf(Math.abs(points))));
     }
 
 }

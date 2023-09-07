@@ -68,7 +68,7 @@ public class PhysicalCategoryEffectsScreen extends HandledScreen<PhysicalCategor
 	public PhysicalCategoryEffectsScreen(PhysicalCategoryMenu container, PlayerInventory inventory, Text text) {
 		super(container, inventory, text);
 		this.player = container.player;
-		this.backgroundWidth = 500;
+		this.backgroundWidth = 488;
 		this.backgroundHeight = 180;
 	}
 
@@ -120,7 +120,7 @@ public class PhysicalCategoryEffectsScreen extends HandledScreen<PhysicalCategor
 		int x;
 		int y = (BUTTONS_HEIGHT*5/2) + 1;
 		Text effectValue = ScreenHelper.getPoints(-1);
-		Text[] effectNamesFirstRow= {StatusEffects.HASTE.getName(),StatusEffects.JUMP_BOOST.getName(),StatusEffects.SPEED.getName(),StatusEffects.STRENGTH.getName(),StatusEffects.REGENERATION.getName()};
+		Text[] effectNamesFirstRow= {StatusEffects.HASTE.getName(),StatusEffects.JUMP_BOOST.getName(),StatusEffects.HEALTH_BOOST.getName(),StatusEffects.STRENGTH.getName(),StatusEffects.REGENERATION.getName()};
 		for(int i=0; i<5;i++){
 			x = this.screenHelper.labelOffSet(effectNamesFirstRow[i],0,i);
 			this.textRenderer.draw(poseStack,effectNamesFirstRow[i],x, y, -12829636);
@@ -128,7 +128,7 @@ public class PhysicalCategoryEffectsScreen extends HandledScreen<PhysicalCategor
 			this.textRenderer.draw(poseStack,effectValue,x, y+10, -12829636);
 		}
 		y+= BUTTONS_HEIGHT*5/2;
-		Text[] effectNamesSecondRow= {StatusEffects.ABSORPTION.getName(),StatusEffects.FIRE_RESISTANCE.getName(),StatusEffects.HEALTH_BOOST.getName(),StatusEffects.NIGHT_VISION.getName(),StatusEffects.RESISTANCE.getName()};
+		Text[] effectNamesSecondRow= {StatusEffects.ABSORPTION.getName(),StatusEffects.FIRE_RESISTANCE.getName(),StatusEffects.SPEED.getName(),StatusEffects.NIGHT_VISION.getName(),StatusEffects.RESISTANCE.getName()};
 		for(int i=0; i<5;i++){
 			x = this.screenHelper.labelOffSet(effectNamesSecondRow[i],0,i);
 			this.textRenderer.draw(poseStack,effectNamesSecondRow[i],x, y, -12829636);
@@ -300,19 +300,19 @@ public class PhysicalCategoryEffectsScreen extends HandledScreen<PhysicalCategor
 
 		x = this.screenHelper.elementOffset(BUTTONS_WIDTH,0,2);
 
-		speedButton = new BGamesButton(x, y, BUTTONS_WIDTH, BUTTONS_HEIGHT, 0, 0, BUTTONS_HEIGHT+BUTTONS_OFFSET, SPEED_EFFECT_BUTTON_TEXTURE,BUTTONS_WIDTH,BUTTONS_TOTAL_HEIGHT,
+		healthBoostButton = new BGamesButton(x, y, BUTTONS_WIDTH, BUTTONS_HEIGHT, 0, 0, BUTTONS_HEIGHT+BUTTONS_OFFSET, HEALTH_BOOST_EFFECT_BUTTON_TEXTURE,BUTTONS_WIDTH,BUTTONS_TOTAL_HEIGHT,
 				e -> {
 					PacketByteBuf buf = PacketByteBufs.create();
 					buf.writeInt(1);
-					buf.writeInt(2);
+					buf.writeInt(7);
 					ClientPlayNetworking.send(ModMessages.BUTTON_BGAMES_INTERACT,  buf);
 				},
 				new ButtonWidget.TooltipSupplier(){
 					@Override
 					public void onTooltip(ButtonWidget buttonWidget, MatrixStack matrices, int i, int j) {
-						StatusEffect effect = StatusEffects.SPEED;
-						String minutes= "20:00";
-						String amplifier = "I";
+						StatusEffect effect = StatusEffects.HEALTH_BOOST;
+						String minutes= "10:00";
+						String amplifier = "X";
 						String firstToolTip = effect.getName().getString()+ " "+amplifier;
 						String secondToolTip = Text.translatable("gui.minutes",minutes).getString();
 						TextRenderer font = MinecraftClient.getInstance().textRenderer;
@@ -324,6 +324,7 @@ public class PhysicalCategoryEffectsScreen extends HandledScreen<PhysicalCategor
 					public void supply(Consumer<Text> consumer) {ButtonWidget.TooltipSupplier.super.supply(consumer);}
 				}
 		);
+
 		x = this.screenHelper.elementOffset(BUTTONS_WIDTH,0,3);
 
 		strengthButton = new BGamesButton(x, y, BUTTONS_WIDTH, BUTTONS_HEIGHT, 0, 0, BUTTONS_HEIGHT+BUTTONS_OFFSET, STRENGTH_EFFECT_BUTTON_TEXTURE,BUTTONS_WIDTH,BUTTONS_TOTAL_HEIGHT,
@@ -379,12 +380,12 @@ public class PhysicalCategoryEffectsScreen extends HandledScreen<PhysicalCategor
 
 		guistate.put("button:haste_button", hasteButton);
 		guistate.put("button:jump_boost_button", jumpBoostButton);
-		guistate.put("button:speed_button", speedButton);
 		guistate.put("button:strength_button", strengthButton);
 		guistate.put("button:regeneration_button", regenerationButton);
+		guistate.put("button:health_boost_button", healthBoostButton);
+		this.addDrawableChild(healthBoostButton);
 		this.addDrawableChild(hasteButton);
 		this.addDrawableChild(jumpBoostButton);
-		this.addDrawableChild(speedButton);
 		this.addDrawableChild(strengthButton);
 		this.addDrawableChild(regenerationButton);
 
@@ -444,19 +445,19 @@ public class PhysicalCategoryEffectsScreen extends HandledScreen<PhysicalCategor
 		);
 
 		x = this.screenHelper.elementOffset(BUTTONS_WIDTH,1,2);
-		healthBoostButton = new BGamesButton(x, y, BUTTONS_WIDTH, BUTTONS_HEIGHT, 0, 0, BUTTONS_HEIGHT+BUTTONS_OFFSET, HEALTH_BOOST_EFFECT_BUTTON_TEXTURE,BUTTONS_WIDTH,BUTTONS_TOTAL_HEIGHT,
+		speedButton = new BGamesButton(x, y, BUTTONS_WIDTH, BUTTONS_HEIGHT, 0, 0, BUTTONS_HEIGHT+BUTTONS_OFFSET, SPEED_EFFECT_BUTTON_TEXTURE,BUTTONS_WIDTH,BUTTONS_TOTAL_HEIGHT,
 				e -> {
 					PacketByteBuf buf = PacketByteBufs.create();
 					buf.writeInt(1);
-					buf.writeInt(7);
+					buf.writeInt(2);
 					ClientPlayNetworking.send(ModMessages.BUTTON_BGAMES_INTERACT,  buf);
 				},
 				new ButtonWidget.TooltipSupplier(){
 					@Override
 					public void onTooltip(ButtonWidget buttonWidget, MatrixStack matrices, int i, int j) {
-						StatusEffect effect = StatusEffects.HEALTH_BOOST;
-						String minutes= "10:00";
-						String amplifier = "X";
+						StatusEffect effect = StatusEffects.SPEED;
+						String minutes= "20:00";
+						String amplifier = "I";
 						String firstToolTip = effect.getName().getString()+ " "+amplifier;
 						String secondToolTip = Text.translatable("gui.minutes",minutes).getString();
 						TextRenderer font = MinecraftClient.getInstance().textRenderer;
@@ -521,12 +522,12 @@ public class PhysicalCategoryEffectsScreen extends HandledScreen<PhysicalCategor
 
 		guistate.put("button:absortion_button", absortionButton);
 		guistate.put("button:fire_resistance_button", fireResistanceButton);
-		guistate.put("button:health_boost_button", healthBoostButton);
 		guistate.put("button:night_vision_button", nightVisionButton);
 		guistate.put("button:resistance_button", resistanceButton);
+		guistate.put("button:speed_button", speedButton);
+		this.addDrawableChild(speedButton);
 		this.addDrawableChild(absortionButton);
 		this.addDrawableChild(fireResistanceButton);
-		this.addDrawableChild(healthBoostButton);
 		this.addDrawableChild(nightVisionButton);
 		this.addDrawableChild(resistanceButton);
 
