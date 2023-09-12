@@ -157,6 +157,13 @@ public class SocialCategoryEffectsScreen extends AbstractContainerScreen<SocialC
 				areaStrengthButton.setOn();
 			}
 		}
+		if(player.hasEffect(MobEffects.HERO_OF_THE_VILLAGE) && heroButton!=null){
+			heroButton.setOff();
+		}else{
+			if(heroButton!=null && !heroButton.isEnabled()) {
+				heroButton.setOn();
+			}
+		}
 
 
 	}

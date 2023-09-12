@@ -160,6 +160,13 @@ public class SocialCategoryEffectsScreen extends HandledScreen<SocialCategoryMen
 				areaStrengthButton.setOn();
 			}
 		}
+		if(player.hasStatusEffect(StatusEffects.HERO_OF_THE_VILLAGE) && heroButton!=null){
+			heroButton.setOff();
+		}else{
+			if(heroButton!=null && !heroButton.isEnabled()) {
+				heroButton.setOn();
+			}
+		}
 
 
 	}
