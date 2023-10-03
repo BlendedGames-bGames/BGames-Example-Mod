@@ -29,10 +29,7 @@ public class AreaStrengthEffect extends MobEffect {
 
         int radius = Math.min(amplifier*2,20);
         if(entity instanceof Player){
-
             if(!entity.level.isClientSide()) {
-
-                ;//max radius of 40 blocks
                 AABB boundingBox = entity.getBoundingBox().inflate(radius);
                 List<LivingEntity> entities = entity.level.getEntitiesOfClass(LivingEntity.class, boundingBox);
 

@@ -38,8 +38,6 @@ public class AreaRegenerationEffect extends MobEffect {
         if(entity instanceof Player){
 
             if(!entity.level.isClientSide()) {
-entity.isInvisible()
-                ;//max radius of 40 blocks
                 AABB boundingBox = entity.getBoundingBox().inflate(radius);
                 List<LivingEntity> entities = entity.level.getEntitiesOfClass(LivingEntity.class, boundingBox);
 

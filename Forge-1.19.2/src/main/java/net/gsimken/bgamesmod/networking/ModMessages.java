@@ -14,20 +14,19 @@ import net.minecraftforge.network.simple.SimpleChannel;
 
 public class ModMessages {
     private static SimpleChannel INSTANCE;
+    private static SimpleChannel net = NetworkRegistry.ChannelBuilder
+            .named(new ResourceLocation(BgamesMod.MOD_ID, "messages"))
+            .networkProtocolVersion(() -> "1.0")
+            .clientAcceptedVersions(s -> true)
+            .serverAcceptedVersions(s -> true)
+            .simpleChannel();
 
     private static int packetId = 0;
     private static int id() {
         return packetId++;
     }
 
-    public static void register() {
-        SimpleChannel net = NetworkRegistry.ChannelBuilder
-                .named(new ResourceLocation(BgamesMod.MOD_ID, "messages"))
-                .networkProtocolVersion(() -> "1.0")
-                .clientAcceptedVersions(s -> true)
-                .serverAcceptedVersions(s -> true)
-                .simpleChannel();
-
+    public static void registerServer() {
         INSTANCE = net;
 
         net.messageBuilder(ButtonOpenScreenC2SPacket.class, id(), NetworkDirection.PLAY_TO_SERVER)
@@ -40,6 +39,13 @@ public class ModMessages {
                 .encoder(ButtonsBGamesInteractC2SPacket::toBytes)
                 .consumerMainThread(ButtonsBGamesInteractC2SPacket::handle)
                 .add();
+
+
+
+    }
+    public static void registerClient() {
+
+        INSTANCE = net;
         net.messageBuilder(CreateSquareRingParticleS2CPacket.class, id(), NetworkDirection.PLAY_TO_CLIENT)
                 .decoder(CreateSquareRingParticleS2CPacket::new)
                 .encoder(CreateSquareRingParticleS2CPacket::toBytes)

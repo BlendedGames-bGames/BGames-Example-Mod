@@ -42,14 +42,12 @@ public class BgamesMod
     public BgamesMod()
     {
         IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
-
         // Register the commonSetup method for modloading
         eventBus.addListener(this::commonSetup);
         ModEffects.register(eventBus);
         ModPotions.register(eventBus);
         ModMenus.register(eventBus);
 
-        // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);
 
 
@@ -57,7 +55,7 @@ public class BgamesMod
 
     private void commonSetup(final FMLCommonSetupEvent event)
     {
-        ModMessages.register();
+        ModMessages.registerServer();
         //Recipe for create a potion of pickup boost
         BrewingRecipeRegistry.addRecipe(new PickupBoostPotionRecipe(
                 Ingredient.of(PotionUtils.setPotion(new ItemStack(Items.POTION),Potions.AWKWARD)),
@@ -75,13 +73,13 @@ public class BgamesMod
 
     }
 
-     // You can use EventBusSubscriber to automatically register all static methods in the class annotated with @SubscribeEvent
     @Mod.EventBusSubscriber(modid = MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
     public static class ClientModEvents
     {
         @SubscribeEvent
         public static void onClientSetup(FMLClientSetupEvent event)
         {
+            ModMessages.registerClient();
             MenuScreens.register(ModMenus.CHOOSE_CATEGORY.get(), ChooseCategoriesScreen::new);
             MenuScreens.register(ModMenus.PHYSICAL_CATEGORY.get(), PhysicalCategoryEffectsScreen::new);
             MenuScreens.register(ModMenus.COGNITIVE_CATEGORY.get(), CognitiveCategoryEffectsScreen::new);

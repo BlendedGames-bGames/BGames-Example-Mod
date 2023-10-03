@@ -24,7 +24,5 @@ public class BgamesMod implements ModInitializer {
 		ModMenus.registerMenus();
 		ModEffects.register();
 		ModPotions.register();
-
-		LOGGER.info("Hello Fabric world!");
 	}
 }
