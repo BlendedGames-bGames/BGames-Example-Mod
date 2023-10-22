@@ -1,8 +1,8 @@
 # BGames example Mod
-[![es](https://img.shields.io/badge/lang-es-green.svg)](https://github.com/Gsimken/BGames-Example-Mod/blob/master/Readmes/README-es.md)
-[![en](https://img.shields.io/badge/lang-en-blue.svg)](https://github.com/Gsimken/BGames-Example-Mod/blob/master/README.md)
+[![es](https://img.shields.io/badge/lang-es-green.svg)](./docs/README-es.md)
+[![en](https://img.shields.io/badge/lang-en-blue.svg)](./README.md)
 
-BGames example mod is a mod that aims to show the usage of [bGames Library](https://github.com/Gsimken/BGames-Minecraft-Library). In bGames, there can be multiple classifications; in this case, an example of what could be done with three of them. 
+BGames example mod is a mod that aims to show the usage of [bGames Library](https://github.com/BlendedGames-bGames/BGames-Minecraft-Library). In bGames, there can be multiple classifications; in this case, an example of what could be done with three of them. 
 
 *note: All details of the effects can be found by hovering over the buttons.*
 
